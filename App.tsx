@@ -30,9 +30,9 @@ const HomeScreen = () => {
   );
 };
 
-const BookScreen = () => {
-  //const { book } = route.params;
-  return <BookC />;
+const BookScreen = ({ route }: any) => {
+  const { book } = route.params;
+  return <BookC book={book} />;
 };
 
 export default function App() {
