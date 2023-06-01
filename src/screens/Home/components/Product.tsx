@@ -21,7 +21,7 @@ const Product = ({ product, style }: Props) => {
         style={styles.image}
         source={{ uri: product.coverPage.toString() }}
       />
-      <Text>{product.title}</Text>
+      <Text numberOfLines={1} ellipsizeMode="tail">{product.title}</Text>
     </TouchableOpacity>
   );
 };

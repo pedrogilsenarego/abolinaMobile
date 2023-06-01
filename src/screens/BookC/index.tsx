@@ -1,10 +1,11 @@
 import React from "react";
 import { Button, Text, View, StyleSheet, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { i18n } from "../../translations/i18n";
 import { useSelector } from "react-redux";
 import { State } from "../../slicer/types";
 import { Book } from "../../slicer/books/books.types";
+import { i18n } from "../../translations/i18n";
+
 
 interface Props {
   book?: Book;
@@ -17,12 +18,6 @@ const BookC = ({ book }: Props) => {
   if (!book) return <></>
 
   return (
-
-
-
-
-
-
 
     <View style={styles.mainContainer}>
       <View style={styles.container}>
@@ -38,7 +33,7 @@ const BookC = ({ book }: Props) => {
         </View>
       </View>
       <Text style={{ marginTop: 30, fontWeight: "bold" }}>
-        Teste
+        {i18n.t("modules.book.description")}
       </Text>
       <Text style={{ marginTop: 10, textAlign: "justify" }}>
         {lang === "PT" ? book?.resume : book?.resumeEN}
