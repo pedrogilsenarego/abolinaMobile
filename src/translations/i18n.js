@@ -9,9 +9,9 @@ i18n.use(initReactI18next).init({
   interpolation: {
     escapeValue: false,
   },
-
+  defaultNS: ["translations"],
   fallbackLng: "pt",
-
+  ns: ["translations"],
   resources: content,
 });
 
