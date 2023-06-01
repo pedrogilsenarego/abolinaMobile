@@ -11,14 +11,14 @@ interface Props {
 }
 
 const BookC = ({ book }: Props) => {
-  // const navigation = useNavigation();
-  // const lang = useSelector<State, string>((state) => state.general.lang);
+  const navigation = useNavigation();
+  const lang = useSelector<State, string>((state) => state.general.lang);
 
   // if (!book) return <></>
 
   return (
-    <></>
-    // <View style={styles.mainContainer}>
+
+
     //   <View style={styles.container}>
     //     <View style={styles.imageContainer}>
     //       <Image
@@ -39,8 +39,9 @@ const BookC = ({ book }: Props) => {
     //   <Text style={{ marginTop: "10px", textAlign: "justify" }}>
     //     {lang === "PT" ? book?.resume : book?.resumeEN}
     //   </Text>
-    //   <Button title='Go back' onPress={() => navigation.goBack()} />
-    // </View>
+    <View style={styles.mainContainer}>
+      <Button title='Go back' onPress={() => navigation.goBack()} />
+    </View>
   );
 };
 
