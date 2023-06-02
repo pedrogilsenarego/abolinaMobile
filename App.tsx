@@ -11,7 +11,7 @@ import MainLayout from "./src/layouts/MainLayout";
 import Home from "./src/screens/Home/Home";
 import BookC from "./src/screens/BookC";
 import { ROUTE_PATHS } from "./src/constants/routes";
-import BookLayout from "./src/layouts/BookLayout";
+
 
 const Stack = createStackNavigator();
 
