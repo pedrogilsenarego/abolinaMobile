@@ -34,9 +34,9 @@ const HomeScreen = () => {
 const BookScreen = ({ route }: any) => {
   const { book } = route.params;
   return (
-    <BookLayout>
-      <BookC book={book} />
-    </BookLayout>
+
+    <BookC book={book} />
+
   );
 };
 

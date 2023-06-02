@@ -1,10 +1,11 @@
 import React from "react";
-import { Button, Text, View, StyleSheet, Image, ScrollView } from "react-native";
+import { Button, Text, View, StyleSheet, Image, ScrollView, SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { State } from "../../slicer/types";
 import { Book } from "../../slicer/books/books.types";
 import { i18n } from "../../translations/i18n";
+import MenuBook from "../../components/MenuBook";
 
 
 interface Props {
@@ -18,46 +19,55 @@ const BookC = ({ book }: Props) => {
   if (!book) return <></>
 
   return (
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: "white",
 
-    <ScrollView style={styles.mainContainer} showsVerticalScrollIndicator={false}>
-      <View style={styles.container}>
-        <View style={styles.imageContainer}>
-          <Image
-            style={styles.image}
-            source={{ uri: book.coverPage.toString() }}
-          />
-        </View>
-        <View style={styles.detailsContainer}>
-          <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>{book?.title}</Text>
-          <Text style={styles.text}>€{book?.price}</Text>
-        </View>
+      }}>
+      <View>
+        <MenuBook book={book} />
+        <ScrollView style={styles.mainContainer} showsVerticalScrollIndicator={false}>
+          <View style={styles.container}>
+            <View style={styles.imageContainer}>
+              <Image
+                style={styles.image}
+                source={{ uri: book.coverPage.toString() }}
+              />
+            </View>
+            <View style={styles.detailsContainer}>
+              <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>{book?.title}</Text>
+              <Text style={styles.text}>€{book?.price}</Text>
+            </View>
+          </View>
+          <Text style={{ marginTop: 30, fontWeight: "bold" }}>
+            {i18n.t("modules.book.description")}
+          </Text>
+          <Text style={{ marginTop: 10, textAlign: "justify" }}>
+            {lang === "PT" ? book?.resume : book?.resumeEN}
+          </Text>
+          <Text style={{ marginTop: 30, fontWeight: "bold" }}>
+            {i18n.t("modules.book.author")}
+          </Text>
+          <Text style={{ marginTop: 10, textAlign: "justify" }}>
+            {lang === "PT" ? book?.authorResume : book?.authorResumeEN}
+          </Text>
+          <Text style={{ marginTop: 30, fontWeight: "bold" }}>
+            {i18n.t("modules.book.designer")}
+          </Text>
+          <Text style={{ marginTop: 10, textAlign: "justify" }}>
+            {lang === "PT" ? book?.designerResume : book?.designerResumeEN}
+          </Text>
+          <Text style={{ marginTop: 30, fontWeight: "bold" }}>
+            {i18n.t("modules.book.translator")}
+          </Text>
+          <Text style={{ marginTop: 10, textAlign: "justify" }}>
+            {lang === "PT" ? book?.translatorResume : book?.translatorResumeEN}
+          </Text>
+          <Button title='Go back' onPress={() => navigation.goBack()} />
+        </ScrollView>
       </View>
-      <Text style={{ marginTop: 30, fontWeight: "bold" }}>
-        {i18n.t("modules.book.description")}
-      </Text>
-      <Text style={{ marginTop: 10, textAlign: "justify" }}>
-        {lang === "PT" ? book?.resume : book?.resumeEN}
-      </Text>
-      <Text style={{ marginTop: 30, fontWeight: "bold" }}>
-        {i18n.t("modules.book.author")}
-      </Text>
-      <Text style={{ marginTop: 10, textAlign: "justify" }}>
-        {lang === "PT" ? book?.authorResume : book?.authorResumeEN}
-      </Text>
-      <Text style={{ marginTop: 30, fontWeight: "bold" }}>
-        {i18n.t("modules.book.designer")}
-      </Text>
-      <Text style={{ marginTop: 10, textAlign: "justify" }}>
-        {lang === "PT" ? book?.designerResume : book?.designerResumeEN}
-      </Text>
-      <Text style={{ marginTop: 30, fontWeight: "bold" }}>
-        {i18n.t("modules.book.translator")}
-      </Text>
-      <Text style={{ marginTop: 10, textAlign: "justify" }}>
-        {lang === "PT" ? book?.translatorResume : book?.translatorResumeEN}
-      </Text>
-      <Button title='Go back' onPress={() => navigation.goBack()} />
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 

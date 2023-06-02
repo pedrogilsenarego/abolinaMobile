@@ -3,23 +3,21 @@ import { Colors } from "../../constants/pallete";
 import { useNavigation } from "@react-navigation/native";
 
 import React from "react";
+import { Book } from "../../slicer/books/books.types";
+interface Props {
+  book?: Book
+}
 
-const MenuBook = () => {
+const MenuBook = ({ book }: Props) => {
   const navigation = useNavigation()
   return (
     <View style={{ backgroundColor: Colors.tealc, padding: 10 }}>
       <TouchableOpacity
         onPress={() => navigation.goBack()}
-        style={{
-          backgroundColor: "green",
-          padding: 5,
-          borderRadius: 2,
-          alignSelf: 'flex-start',
-          borderWidth: 2,
-          borderColor: "grey"
-        }}
+        style={{ padding: 5, borderWidth: 2, borderColor: "transparent" }}
+
       >
-        <Text style={{ color: "white" }}>Todos</Text>
+        <Text style={{ color: "white" }}>{book?.title}</Text>
       </TouchableOpacity>
     </View>
   );
