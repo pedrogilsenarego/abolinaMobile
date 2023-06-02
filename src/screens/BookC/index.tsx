@@ -73,7 +73,7 @@ const BookC = ({ book }: Props) => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    marginTop: 40,
+    paddingTop: 40,
     marginHorizontal: 20,
   },
   container: {

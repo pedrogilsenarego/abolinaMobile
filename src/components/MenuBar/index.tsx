@@ -4,7 +4,13 @@ import React from "react";
 
 const MenuBar = () => {
   return (
-    <View style={{ backgroundColor: Colors.tealc, padding: 10 }}>
+    <View style={{
+      backgroundColor: Colors.tealc, padding: 10, shadowColor: "black",
+      shadowOpacity: 0.4,
+      shadowOffset: { width: 0, height: 2 },
+      shadowRadius: 2,
+      elevation: 4,
+    }}>
       <TouchableOpacity
         style={{
           backgroundColor: "green",
@@ -12,7 +18,8 @@ const MenuBar = () => {
           borderRadius: 2,
           alignSelf: 'flex-start',
           borderWidth: 2,
-          borderColor: "grey"
+          borderColor: "grey",
+
         }}
       >
         <Text style={{ color: "white" }}>Todos</Text>
