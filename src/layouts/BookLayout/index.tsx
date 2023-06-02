@@ -1,21 +1,20 @@
 import { SafeAreaView, View } from "react-native"
-import MenuBar from "../../components/MenuBar"
+import MenuBook from "../../components/MenuBook"
 import React from "react"
 
-const MainLayout = (props: any) => {
+const BookLayout = (props: any) => {
   return (
     <SafeAreaView
       style={{
         flex: 1,
         backgroundColor: "white",
-        alignItems: "center",
       }}
     >
       <View >
-        <MenuBar />
+        <MenuBook />
         {props.children}
       </View>
     </SafeAreaView>
   )
 }
-export default MainLayout
+export default BookLayout

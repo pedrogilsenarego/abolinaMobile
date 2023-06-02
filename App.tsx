@@ -1,16 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./src/slicer/createStore";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import MainLayout from './src/layouts/MainLayout';
-import Home from './src/screens/Home/Home';
-import BookC from './src/screens/BookC';
-import { ROUTE_PATHS } from './src/constants/routes';
+import MainLayout from "./src/layouts/MainLayout";
+import Home from "./src/screens/Home/Home";
+import BookC from "./src/screens/BookC";
+import { ROUTE_PATHS } from "./src/constants/routes";
+import BookLayout from "./src/layouts/BookLayout";
 
 const Stack = createStackNavigator();
 
@@ -32,7 +33,11 @@ const HomeScreen = () => {
 
 const BookScreen = ({ route }: any) => {
   const { book } = route.params;
-  return <BookC book={book} />;
+  return (
+    <BookLayout>
+      <BookC book={book} />
+    </BookLayout>
+  );
 };
 
 export default function App() {
@@ -45,7 +50,6 @@ export default function App() {
   });
 
   if (!loaded) return null;
-
 
   return (
     <Provider store={store}>
@@ -67,8 +71,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

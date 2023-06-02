@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Text, View, StyleSheet, Image } from "react-native";
+import { Button, Text, View, StyleSheet, Image, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { State } from "../../slicer/types";
@@ -19,7 +19,7 @@ const BookC = ({ book }: Props) => {
 
   return (
 
-    <View style={styles.mainContainer}>
+    <ScrollView style={styles.mainContainer} showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
@@ -38,14 +38,32 @@ const BookC = ({ book }: Props) => {
       <Text style={{ marginTop: 10, textAlign: "justify" }}>
         {lang === "PT" ? book?.resume : book?.resumeEN}
       </Text>
+      <Text style={{ marginTop: 30, fontWeight: "bold" }}>
+        {i18n.t("modules.book.author")}
+      </Text>
+      <Text style={{ marginTop: 10, textAlign: "justify" }}>
+        {lang === "PT" ? book?.authorResume : book?.authorResumeEN}
+      </Text>
+      <Text style={{ marginTop: 30, fontWeight: "bold" }}>
+        {i18n.t("modules.book.designer")}
+      </Text>
+      <Text style={{ marginTop: 10, textAlign: "justify" }}>
+        {lang === "PT" ? book?.designerResume : book?.designerResumeEN}
+      </Text>
+      <Text style={{ marginTop: 30, fontWeight: "bold" }}>
+        {i18n.t("modules.book.translator")}
+      </Text>
+      <Text style={{ marginTop: 10, textAlign: "justify" }}>
+        {lang === "PT" ? book?.translatorResume : book?.translatorResumeEN}
+      </Text>
       <Button title='Go back' onPress={() => navigation.goBack()} />
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   mainContainer: {
-    marginTop: 100,
+    marginTop: 40,
     marginHorizontal: 20,
   },
   container: {

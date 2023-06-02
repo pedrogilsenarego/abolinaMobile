@@ -1,11 +1,15 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { Colors } from "../../constants/pallete";
+import { useNavigation } from "@react-navigation/native";
+
 import React from "react";
 
-const MenuBar = () => {
+const MenuBook = () => {
+  const navigation = useNavigation()
   return (
     <View style={{ backgroundColor: Colors.tealc, padding: 10 }}>
       <TouchableOpacity
+        onPress={() => navigation.goBack()}
         style={{
           backgroundColor: "green",
           padding: 5,
@@ -21,4 +25,4 @@ const MenuBar = () => {
   );
 };
 
-export default MenuBar;
+export default MenuBook;

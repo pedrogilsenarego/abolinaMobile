@@ -4,6 +4,9 @@ export const content = {
       modules: {
         book: {
           description: "Descrição",
+          author: "Autor",
+          designer: "Ilustrador",
+          translator: "Tradutor",
         },
       },
     },
