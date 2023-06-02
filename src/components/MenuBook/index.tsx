@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { Colors } from "../../constants/pallete";
 import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons"
 
 import React from "react";
 import { Book } from "../../slicer/books/books.types";
@@ -14,9 +15,10 @@ const MenuBook = ({ book }: Props) => {
     <View style={{ backgroundColor: Colors.tealc, padding: 10 }}>
       <TouchableOpacity
         onPress={() => navigation.goBack()}
-        style={{ padding: 5, borderWidth: 2, borderColor: "transparent" }}
+        style={{ padding: 5, borderWidth: 2, borderColor: "transparent", flexDirection: "row", alignItems: "center", columnGap: 10 }}
 
       >
+        <Ionicons name="arrow-back-outline" size={17} color="white" />
         <Text style={{ color: "white" }}>{book?.title}</Text>
       </TouchableOpacity>
     </View>
