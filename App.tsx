@@ -1,19 +1,15 @@
 
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
 import { useFonts } from "expo-font";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./src/slicer/createStore";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import MainLayout from "./src/layouts/MainLayout";
 import Home from "./src/screens/Home/Home";
 import BookC from "./src/screens/BookC";
 import { ROUTE_PATHS } from "./src/constants/routes";
-
-
-const Stack = createStackNavigator();
+import Login from "./src/screens/Login";
 
 const theme = {
   ...DefaultTheme,
@@ -23,13 +19,9 @@ const theme = {
   },
 };
 
-const HomeScreen = () => {
-  return (
 
-    <Home />
-
-  );
-};
+const Stack = createStackNavigator();
+const AuthStack = createStackNavigator()
 
 const BookScreen = ({ route }: any) => {
   const { book } = route.params;
@@ -39,6 +31,29 @@ const BookScreen = ({ route }: any) => {
 
   );
 };
+const AuthScreens = () => {
+  return (
+    <AuthStack.Navigator screenOptions={{ headerShown: false }}>
+      <AuthStack.Screen name={ROUTE_PATHS.LOGIN} component={Login} />
+    </AuthStack.Navigator>
+  )
+}
+const Screens = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName={ROUTE_PATHS.HOME}
+    >
+      <Stack.Screen name={ROUTE_PATHS.HOME} component={Home} />
+      <Stack.Screen name={ROUTE_PATHS.BOOK} component={BookScreen} />
+    </Stack.Navigator>
+  )
+
+}
+
+
+
+
 
 export default function App() {
   const [loaded] = useFonts({
@@ -49,30 +64,19 @@ export default function App() {
     InterLight: require("./assets/fonts/Inter-Light.ttf"),
   });
 
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
+
   if (!loaded) return null;
 
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <NavigationContainer theme={theme}>
-          <Stack.Navigator
-            screenOptions={{ headerShown: false }}
-            initialRouteName={ROUTE_PATHS.HOME}
-          >
-            <Stack.Screen name={ROUTE_PATHS.HOME} component={HomeScreen} />
-            <Stack.Screen name={ROUTE_PATHS.BOOK} component={BookScreen} />
-          </Stack.Navigator>
+          {isAuthenticated ? <Screens /> : <AuthScreens />}
         </NavigationContainer>
       </PersistGate>
     </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+
