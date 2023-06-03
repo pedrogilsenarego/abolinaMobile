@@ -5,9 +5,10 @@ import { Colors } from "../../../constants/pallete";
 interface Props {
   onClick?: () => void;
   label: string;
+  inverseColors?: boolean
 }
 
-const Button = ({ label, onClick }: Props) => {
+const Button = ({ label, onClick, inverseColors }: Props) => {
   return (
     <View style={{ alignSelf: "flex-start" }}>
       <TouchableOpacity
@@ -22,7 +23,7 @@ const Button = ({ label, onClick }: Props) => {
           borderRadius: 6,
         }}
       >
-        <Text style={{ color: Colors.tealc, fontSize: 16 }}>{label}</Text>
+        <Text style={{ color: inverseColors ? "white" : Colors.tealc, fontSize: 16 }}>{label}</Text>
       </TouchableOpacity>
     </View>
   );

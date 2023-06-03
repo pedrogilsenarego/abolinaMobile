@@ -6,19 +6,20 @@ interface Props {
   formik?: boolean
   label: string
   onClick?: () => void
+  inverseColors?: boolean
 
 }
 
-const Button = ({ formik, label, onClick }: Props) => {
+const Button = ({ formik, label, onClick, inverseColors }: Props) => {
 
   const RenderButtonFormik = () => {
     const { submitForm } = useFormikContext()
 
-    return <ButtonComponent onClick={submitForm} label={label} />
+    return <ButtonComponent onClick={submitForm} label={label} inverseColors={inverseColors} />
   }
   const RenderButton = () => {
 
-    return <ButtonComponent onClick={onClick} label={label} />
+    return <ButtonComponent onClick={onClick} label={label} inverseColors={inverseColors} />
   }
   return formik ? RenderButtonFormik() : RenderButton()
 }

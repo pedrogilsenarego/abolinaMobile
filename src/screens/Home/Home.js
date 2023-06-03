@@ -5,8 +5,9 @@ import { Colors } from "../../constants/pallete";
 
 import Product from "./components/Product";
 import { firestore } from "../../config/firebaseConfig";
-import { useNavigation } from "@react-navigation/native";
+import Button from "../../components/Button";
 import Menu from "../../components/Menu";
+import { signOut } from "../../services/user";
 
 const Home = () => {
   const [books, setBooks] = useState();
@@ -29,7 +30,9 @@ const Home = () => {
       }}
     >
       <View>
-        <Menu></Menu>
+        <Menu>
+          <Button inverseColors label='Logout' onClick={signOut} />
+        </Menu>
         <View style={{ marginHorizontal: 10 }}>
           <FlatList
             numColumns={3}
