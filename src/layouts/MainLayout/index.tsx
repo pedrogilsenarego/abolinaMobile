@@ -1,21 +1,16 @@
-import { SafeAreaView, View } from "react-native"
-import MenuBar from "../../components/MenuBar"
-import React from "react"
+import { SafeAreaView, View } from "react-native";
+
+import React from "react";
+import Menu from "../../components/Menu";
 
 const MainLayout = (props: any) => {
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: "white",
-        alignItems: "center",
-      }}
-    >
-      <View >
-        <MenuBar />
-        {props.children}
-      </View>
-    </SafeAreaView>
-  )
-}
-export default MainLayout
+
+    <View>
+
+      {props.children}
+    </View>
+
+  );
+};
+export default MainLayout;

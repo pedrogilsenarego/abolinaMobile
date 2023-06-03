@@ -6,6 +6,7 @@ import { Colors } from "../../constants/pallete";
 import Product from "./components/Product";
 import { firestore } from "../../config/firebaseConfig";
 import { useNavigation } from "@react-navigation/native";
+import Menu from "../../components/Menu";
 
 const Home = () => {
   const [books, setBooks] = useState();
@@ -21,15 +22,25 @@ const Home = () => {
   }, []);
 
   return (
-    <View style={{ marginHorizontal: 10 }}>
-      <FlatList
-        numColumns={3}
-        style={{ paddingTop: 30 }}
-        keyExtractor={(item, index) => index.toString()}
-        data={books}
-        renderItem={({ item }) => <Product product={item} />}
-      ></FlatList>
-    </View>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: "white",
+      }}
+    >
+      <View>
+        <Menu></Menu>
+        <View style={{ marginHorizontal: 10 }}>
+          <FlatList
+            numColumns={3}
+            style={{ paddingTop: 30 }}
+            keyExtractor={(item, index) => index.toString()}
+            data={books}
+            renderItem={({ item }) => <Product product={item} />}
+          ></FlatList>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
 

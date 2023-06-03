@@ -1,12 +1,21 @@
 import React from "react";
-import { Button, Text, View, StyleSheet, Image, ScrollView, SafeAreaView } from "react-native";
+import {
+  Button,
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  ScrollView,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { State } from "../../slicer/types";
 import { Book } from "../../slicer/books/books.types";
 import { i18n } from "../../translations/i18n";
-import MenuBook from "../../components/MenuBook";
-
+import Menu from "../../components/Menu";
+import { Ionicons } from "@expo/vector-icons";
 
 interface Props {
   book?: Book;
@@ -16,18 +25,30 @@ const BookC = ({ book }: Props) => {
   const navigation = useNavigation();
   const lang = useSelector<State, string>((state) => state.general.lang);
 
-  if (!book) return <></>
+  if (!book) return <></>;
 
   return (
     <SafeAreaView
       style={{
         flex: 1,
         backgroundColor: "white",
-
-      }}>
+      }}
+    >
       <View>
-        <MenuBook book={book} />
-        <ScrollView style={styles.mainContainer} showsVerticalScrollIndicator={false}>
+        <Menu>
+
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={styles.backButton}
+          >
+            <Ionicons name='arrow-back-outline' size={17} color='white' />
+            <Text style={styles.titleMenu}>{book?.title}</Text>
+          </TouchableOpacity>
+        </Menu>
+        <ScrollView
+          style={styles.mainContainer}
+          showsVerticalScrollIndicator={false}
+        >
           <View style={styles.container}>
             <View style={styles.imageContainer}>
               <Image
@@ -36,7 +57,9 @@ const BookC = ({ book }: Props) => {
               />
             </View>
             <View style={styles.detailsContainer}>
-              <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>{book?.title}</Text>
+              <Text numberOfLines={1} ellipsizeMode='tail' style={styles.title}>
+                {book?.title}
+              </Text>
               <Text style={styles.text}>€{book?.price}</Text>
             </View>
           </View>
@@ -66,12 +89,23 @@ const BookC = ({ book }: Props) => {
           </Text>
           <Button title='Go back' onPress={() => navigation.goBack()} />
         </ScrollView>
-      </View>
-    </SafeAreaView>
+      </View >
+    </SafeAreaView >
   );
 };
 
 const styles = StyleSheet.create({
+  backButton: {
+    padding: 5,
+    borderWidth: 2,
+    borderColor: "transparent",
+    flexDirection: "row",
+    alignItems: "center",
+    columnGap: 10,
+  },
+  titleMenu: {
+    color: "white",
+  },
   mainContainer: {
     paddingTop: 40,
     marginHorizontal: 20,

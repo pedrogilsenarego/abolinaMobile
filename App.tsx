@@ -25,9 +25,9 @@ const theme = {
 
 const HomeScreen = () => {
   return (
-    <MainLayout>
-      <Home />
-    </MainLayout>
+
+    <Home />
+
   );
 };
 
