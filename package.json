@@ -17,6 +17,7 @@
     "expo": "~48.0.18",
     "expo-status-bar": "~1.4.4",
     "firebase": "^9.22.1",
+    "formik": "^2.4.1",
     "globally": "^0.0.0",
     "i18next": "^22.5.0",
     "react": "18.2.0",
@@ -33,7 +34,8 @@
     "redux": "^4.2.1",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
