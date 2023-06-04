@@ -30,6 +30,8 @@ export const content = {
         fail: {
           newUser: "You were not registered this time",
           loginUser: "Something went wrong",
+          emailInUse:
+            "This email is already in use, please recover the password",
           emailNotVerified:
             "Please verify first your email to login with your account",
         },

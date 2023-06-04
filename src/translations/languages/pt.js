@@ -30,7 +30,8 @@ export const content = {
         },
         fail: {
           newUser: "Alguma coisa correu mal",
-
+          emailInUse:
+            "Este e-mail já se encontra em uso, por favor recuperar password",
           emailNotVerified:
             "Por favor verifique primeiro a sua conta antes de fazer o login",
         },
