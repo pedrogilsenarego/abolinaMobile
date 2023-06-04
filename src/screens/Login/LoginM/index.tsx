@@ -8,7 +8,7 @@ import { Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import TextField from "../../../components/Inputs/TextField";
 
-import { emailSignInStart, googleSignInStart, signUpUserStart } from "../../../slicer/user/user.actions";
+import { emailSignInStart, googleSignInStart } from "../../../slicer/user/user.actions";
 
 import { i18n } from "../../../translations/i18n";
 
@@ -28,7 +28,8 @@ const LoginM = () => {
     password: "",
   };
   const handleSubmit = (values: FORM) => {
-    emailSignInStart(values)
+
+    dispatch(emailSignInStart(values))
   };
   return (
     <View>
