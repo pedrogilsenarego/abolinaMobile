@@ -1,5 +1,5 @@
 import React from "react"
-import { TouchableOpacity, View, Text } from "react-native"
+import { TouchableOpacity, View, Text, Keyboard } from "react-native"
 import { useDispatch } from "react-redux";
 
 import Button from "../../../components/Button";
@@ -30,6 +30,7 @@ const LoginM = () => {
   const handleSubmit = (values: FORM) => {
 
     dispatch(emailSignInStart(values))
+    Keyboard.dismiss();
   };
   return (
     <View>

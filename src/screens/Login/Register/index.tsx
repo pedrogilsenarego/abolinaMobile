@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text } from "react-native"
+import { View, Keyboard } from "react-native"
 
 
 import Button from "../../../components/Button";
@@ -7,7 +7,6 @@ import Button from "../../../components/Button";
 import { Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import TextField from "../../../components/Inputs/TextField";
-import { createAccount } from "../../../services/user";
 import { i18n } from "../../../translations/i18n";
 import { useDispatch } from "react-redux";
 import { signUpUserStart } from "../../../slicer/user/user.actions";
@@ -28,8 +27,8 @@ const Register = () => {
     password: "",
   };
   const handleSubmit = (values: FORM) => {
-    //createAccount(values)
     dispatch(signUpUserStart(values));
+    Keyboard.dismiss();
   };
   return (
     <View>
