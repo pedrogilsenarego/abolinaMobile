@@ -7,8 +7,8 @@ export const signInEmailPassword = (values:{email:string,password:string}) =>{
   });
 }
 
-export const createAccount = (values:{email:string,password:string}) => {
-  const {email, password} = values
+export const createAccount = (values:{name:string,email:string,password:string}) => {
+  const {name,email, password} = values
   auth.createUserWithEmailAndPassword(email,password)
   .then(({user})=>{
     console.log("creating user...")
@@ -16,7 +16,7 @@ export const createAccount = (values:{email:string,password:string}) => {
     const userRoles = ["user"];
     firestore.collection("users").doc(user?.uid).set(
       {
-        displayName:"Pedro",
+        displayName:name,
         email,
         createdDate: timestamp,
         userRoles,
