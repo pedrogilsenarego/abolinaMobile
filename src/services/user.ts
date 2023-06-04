@@ -7,23 +7,37 @@ export const signInEmailPassword = (values:{email:string,password:string}) =>{
   });
 }
 
-export const createAccount = (values:{name:string,email:string,password:string}) => {
-  const {name,email, password} = values
-  auth.createUserWithEmailAndPassword(email,password)
-  .then(({user})=>{
-    console.log("creating user...")
-    const timestamp = new Date();
-    const userRoles = ["user"];
-    firestore.collection("users").doc(user?.uid).set(
-      {
-        displayName:name,
+export const createAccount = (values: { name: string, email: string, password: string }) => {
+  const { name, email, password } = values;
+  auth.createUserWithEmailAndPassword(email, password)
+    .then(({ user }) => {
+      console.log("Creating user...");
+      const timestamp = new Date();
+      const userRoles = ["user"];
+      firestore.collection("users").doc(user?.uid).set({
+        displayName: name,
         email,
         createdDate: timestamp,
         userRoles,
-      }
-    )
-  })
-}
+      })
+      .then(() => {
+        user?.sendEmailVerification()
+          .then(() => {
+            console.log("Email verification sent.");
+          })
+          .catch((error) => {
+            console.log("Error sending email verification:", error);
+          });
+      })
+      .catch((error) => {
+        console.log("Error creating user:", error);
+      });
+    })
+    .catch((error) => {
+      console.log("Error creating user:", error);
+    });
+};
+
 
 export const signOut = () => {
   auth.signOut()

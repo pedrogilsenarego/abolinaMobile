@@ -45,15 +45,16 @@ const Screens = () => {
   const dispatch = useDispatch()
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
   useEffect(() => {
-    if (auth.currentUser) {
-      setIsAuthenticated(true)
-    }
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        setIsAuthenticated(true)
-      } else setIsAuthenticated(false)
-    })
-  }, [])
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user && user.emailVerified) {
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+      }
+    });
+
+    return () => unsubscribe(); // Unsubscribe from the auth state changes when the component unmounts
+  }, []);
 
   useEffect(
     () => {
