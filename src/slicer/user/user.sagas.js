@@ -100,7 +100,7 @@ export function* signUpUser({ payload: { name, email, password } }) {
     //yield auth.createUserWithEmailAndPassword(email, password);
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
     const additionalData = { displayName: name };
-    //yield auth.currentUser.sendEmailVerification();
+    yield auth.currentUser.sendEmailVerification();
     yield getSnapshotFromUserAuth(user, additionalData);
     yield put(
       updateSuccessNotification(
