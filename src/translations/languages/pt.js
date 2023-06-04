@@ -19,6 +19,22 @@ export const content = {
           translator: "Tradutor",
         },
       },
+      notifications: {
+        success: {
+          newUser: "O seu usuário foi registado com sucesso",
+          newUserEmailPassword:
+            "Por favor visite o seu email para verificar o seu e-mail",
+          loginUser: "Esta logado",
+          addedCart: "Livro adicionado ao carrinho",
+          successBuy: "Os items foram pagos com sucesso",
+        },
+        fail: {
+          newUser: "Alguma coisa correu mal",
+
+          emailNotVerified:
+            "Por favor verifique primeiro a sua conta antes de fazer o login",
+        },
+      },
     },
   },
 };

@@ -1,4 +1,5 @@
 import { auth, firestore } from "../config/firebaseConfig"
+import { store } from "../slicer/createStore";
 
 export const signInEmailPassword = (values:{email:string,password:string}) =>{
   const {email, password} = values

@@ -97,12 +97,11 @@ export function* onCheckUserSession() {
 
 export function* signUpUser({ payload: { name, email, password } }) {
   try {
-    yield auth.createUserWithEmailAndPassword(email, password);
-    //const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-    yield auth.currentUser.sendEmailVerification();
-    //const additionalData = { displayName: name };
-    // this would login imiddiatle the user
-    //yield getSnapshotFromUserAuth(user, additionalData);
+    //yield auth.createUserWithEmailAndPassword(email, password);
+    const { user } = yield auth.createUserWithEmailAndPassword(email, password);
+    const additionalData = { displayName: name };
+    //yield auth.currentUser.sendEmailVerification();
+    yield getSnapshotFromUserAuth(user, additionalData);
     yield put(
       updateSuccessNotification(
         i18n.t("notifications.success.newUserEmailPassword")

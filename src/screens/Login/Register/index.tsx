@@ -9,6 +9,8 @@ import { FORM_VALIDATION } from "./validation";
 import TextField from "../../../components/Inputs/TextField";
 import { createAccount } from "../../../services/user";
 import { i18n } from "../../../translations/i18n";
+import { useDispatch } from "react-redux";
+import { signUpUserStart } from "../../../slicer/user/user.actions";
 
 interface FORM {
   name: string;
@@ -18,7 +20,7 @@ interface FORM {
 
 const Register = () => {
 
-
+  const dispatch = useDispatch()
 
   const INITIAL_STATE: FORM = {
     name: "",
@@ -26,7 +28,8 @@ const Register = () => {
     password: "",
   };
   const handleSubmit = (values: FORM) => {
-    createAccount(values)
+    //createAccount(values)
+    dispatch(signUpUserStart(values));
   };
   return (
     <View>

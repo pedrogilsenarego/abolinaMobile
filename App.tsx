@@ -7,6 +7,7 @@ import { store, persistor } from "./src/slicer/createStore";
 
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import Screens from "./src/screens";
+import Snackbar from "./src/components/SnackBar";
 
 
 
@@ -39,6 +40,7 @@ export default function App() {
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <NavigationContainer theme={theme}>
+          <Snackbar />
           <Screens />
         </NavigationContainer>
       </PersistGate>

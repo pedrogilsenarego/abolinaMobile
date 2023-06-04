@@ -20,7 +20,7 @@ const Login = () => {
       style={{
         flex: 1,
         backgroundColor: "white",
-        justifyContent: "center",
+
         alignItems: "center",
         rowGap: 20,
       }}
@@ -28,8 +28,9 @@ const Login = () => {
       <Text style={{ fontSize: 24, color: Colors.tealc, alignSelf: "center" }}>
         {i18n.t("modules.login.title")}
       </Text>
-      {state === "login" ? <LoginM /> : <Register />}
       <Button label={state === "login" ? "Register" : "Login"} onClick={() => setState(state === "login" ? "register" : "login")} />
+
+      {state === "login" ? <LoginM /> : <Register />}
     </SafeAreaView>
   );
 };
