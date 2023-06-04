@@ -76,16 +76,16 @@ export function* isUserAuthenticated() {
   try {
     const userAuth = yield getCurrentUser();
     if (!userAuth) return;
-
-    if (userAuth.emailVerified) {
-      // If the user's email is verified, proceed with your app's logic.
-      yield getSnapshotFromUserAuth(userAuth);
-    } else {
-      // If the user's email is not verified, handle it accordingly (e.g., show an alert, log it, or dispatch an action).
-      console.log("Email is not verified");
-      // You can dispatch an action to update your app state
-      // yield put({ type: 'EMAIL_NOT_VERIFIED' });
-    }
+    yield getSnapshotFromUserAuth(userAuth);
+    // if (userAuth.emailVerified) {
+    //   // If the user's email is verified, proceed with your app's logic.
+    //   yield getSnapshotFromUserAuth(userAuth);
+    // } else {
+    //   // If the user's email is not verified, handle it accordingly (e.g., show an alert, log it, or dispatch an action).
+    //   console.log("Email is not verified");
+    //   // You can dispatch an action to update your app state
+    //   // yield put({ type: 'EMAIL_NOT_VERIFIED' });
+    // }
   } catch (err) {
     console.error(err);
   }

@@ -9,6 +9,7 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import Screens from "./src/screens";
 
 
+
 const theme = {
   ...DefaultTheme,
   color: {
@@ -16,13 +17,6 @@ const theme = {
     background: "transparent",
   },
 };
-
-
-
-
-
-
-
 
 
 export default function App() {
@@ -33,6 +27,8 @@ export default function App() {
     InterRegular: require("./assets/fonts/Inter-Regular.ttf"),
     InterLight: require("./assets/fonts/Inter-Light.ttf"),
   });
+
+
 
 
 

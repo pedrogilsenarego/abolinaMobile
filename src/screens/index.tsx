@@ -4,12 +4,10 @@ import BookC from "../../src/screens/BookC";
 import { ROUTE_PATHS } from "../../src/constants/routes";
 import Login from "../../src/screens/Login";
 import { createStackNavigator } from "@react-navigation/stack";
-import { useSelector } from "react-redux";
-import { State } from "../slicer/types";
-import { User } from "../slicer/user/user.types";
-import { CurrentUser } from "../slicer/user/user.types";
-import { isUserAuthenticated } from "../slicer/user/user.sagas";
+import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../config/firebaseConfig";
+import { checkUserSession } from "../slicer/user/user.actions";
+import { disableLoading } from "../slicer/general/general.actions";
 
 const Stack = createStackNavigator();
 const AuthStack = createStackNavigator()
@@ -44,6 +42,7 @@ const ScreensMain = () => {
 }
 
 const Screens = () => {
+  const dispatch = useDispatch()
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
   useEffect(() => {
     if (auth.currentUser) {
@@ -55,6 +54,15 @@ const Screens = () => {
       } else setIsAuthenticated(false)
     })
   }, [])
+
+  useEffect(
+    () => {
+      dispatch(checkUserSession());
+      dispatch(disableLoading())
+    },
+    // eslint-disable-next-line
+    []
+  );
 
   return (
     isAuthenticated ? <ScreensMain /> : <AuthScreens />
