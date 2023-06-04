@@ -1,4 +1,4 @@
-import { firestore } from "../../firebase/utils";
+import { firestore } from "../../config/firebaseConfig";
 
 export const handleUserProfile = async ({ userAuth, additionalData }) => {
   if (!userAuth) return;

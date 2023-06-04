@@ -8,6 +8,7 @@ export const content = {
       modules: {
         login: {
           title: "Àbolina App",
+          google: "Enter with Google",
           email: "E-mail",
           password: "Password",
         },

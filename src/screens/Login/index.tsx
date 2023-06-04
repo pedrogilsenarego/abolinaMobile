@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, SafeAreaView } from "react-native";
+import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
 import { i18n } from "../../translations/i18n";
 import { Colors } from "../../constants/pallete";
 import Button from "../../components/Button";
@@ -8,8 +8,9 @@ import { Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import TextField from "../../components/Inputs/TextField";
 import { useDispatch } from "react-redux";
-import { emailSignInStart } from "../../slicer/user/user.actions";
-import { createAccount, signInEmailPassword } from "../../services/user";
+import { emailSignInStart, googleSignInStart, signUpUserStart } from "../../slicer/user/user.actions";
+import { createAccount } from "../../services/user";
+
 
 interface FORM {
   email: string;
@@ -17,13 +18,17 @@ interface FORM {
 }
 
 const Login = () => {
+  const dispatch = useDispatch()
+  const handleGoogleSigniIn = () => {
+    dispatch(googleSignInStart());
+  };
 
   const INITIAL_STATE: FORM = {
     email: "",
     password: "",
   };
   const handleSubmit = (values: FORM) => {
-    signInEmailPassword(values)
+    createAccount(values)
   };
 
   return (
@@ -39,6 +44,24 @@ const Login = () => {
       <Text style={{ fontSize: 24, color: Colors.tealc, alignSelf: "center" }}>
         {i18n.t("modules.login.title")}
       </Text>
+      <TouchableOpacity
+        onPress={handleGoogleSigniIn}
+        style={{
+          backgroundColor: "red",
+          paddingHorizontal: 20,
+          paddingVertical: 10,
+          borderRadius: 10
+        }}
+      >
+
+        <Text
+          style={{
+            color: "white"
+          }}
+        >
+          {i18n.t("modules.login.google")}
+        </Text>
+      </TouchableOpacity>
       <Formik
         initialValues={{ ...INITIAL_STATE }}
         onSubmit={(values) => handleSubmit(values)}

@@ -1,9 +1,14 @@
 import { all, call, takeLatest, put } from "redux-saga/effects";
 import { userTypes } from "./user.types";
 import { signInSuccess, signOutUserSuccess } from "./user.actions";
-import { FacebookProvider, GoogleProvider, auth } from "../../firebase/utils";
+import {
+  FacebookProvider,
+  GoogleProvider,
+  auth,
+  getCurrentUser,
+} from "../../config/firebaseConfig";
 import { handleUserProfile } from "./user.helpers";
-import { getCurrentUser } from "../../firebase/utils";
+
 import {
   updateFailNotification,
   updateSuccessNotification,

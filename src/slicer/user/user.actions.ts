@@ -1,5 +1,5 @@
 import { userTypes } from "./user.types";
-import {FORM} from "../../modules/Login/Register"
+
 
 export const signInSuccess = (user:any) => ({
   type: userTypes.SIGN_IN_SUCCESS,
@@ -26,7 +26,7 @@ export const checkUserSession = () => ({
   type: userTypes.CHECK_USER_SESSION,
 });
 
-export const signUpUserStart = (userCredentials:FORM) => ({
+export const signUpUserStart = (userCredentials:any) => ({
   type: userTypes.SIGN_UP_USER_START,
   payload: userCredentials,
 });

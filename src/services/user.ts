@@ -1,4 +1,4 @@
-import { auth } from "../config/firebaseConfig"
+import { auth, firestore } from "../config/firebaseConfig"
 
 export const signInEmailPassword = (values:{email:string,password:string}) =>{
   const {email, password} = values
@@ -9,8 +9,19 @@ export const signInEmailPassword = (values:{email:string,password:string}) =>{
 
 export const createAccount = (values:{email:string,password:string}) => {
   const {email, password} = values
-  auth.createUserWithEmailAndPassword(email,password).then(({user})=>{
+  auth.createUserWithEmailAndPassword(email,password)
+  .then(({user})=>{
     console.log("creating user...")
+    const timestamp = new Date();
+    const userRoles = ["user"];
+    firestore.collection("users").doc(user?.uid).set(
+      {
+        displayName:"Pedro",
+        email,
+        createdDate: timestamp,
+        userRoles,
+      }
+    )
   })
 }
 

@@ -1,5 +1,5 @@
-import { firestore } from "./../../firebase/utils";
-import { storage } from "./../../firebase/utils";
+import { firestore, storage } from "../../config/firebaseConfig";
+
 
 export const handleFetchBooks = ({ persistProducts = [] }) => {
   return new Promise((resolve, reject) => {
@@ -72,7 +72,7 @@ export const handleAddCoverPage = async (
             .child(title)
             .child(imageFile.name)
             .getDownloadURL()
-            .then((url) => {
+            .then((url:any) => {
               resolve(url);
               console.log(url);
               loadProgress = loadProgress + incrementLoad;
@@ -218,7 +218,7 @@ export const handleAddCarroussellImage = async (files: any) => {
             .ref("carroussell")
             .child(imageFile.name)
             .getDownloadURL()
-            .then((url) => {
+            .then((url:any) => {
               resolve(url);
               console.log(url);
               c.push(url);
