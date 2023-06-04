@@ -1,5 +1,5 @@
 import React from "react"
-import { TouchableOpacity, View, Text, Keyboard } from "react-native"
+import { TouchableOpacity, View, Text } from "react-native"
 import { useDispatch } from "react-redux";
 
 import Button from "../../../components/Button";
@@ -8,7 +8,7 @@ import { Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import TextField from "../../../components/Inputs/TextField";
 
-import { emailSignInStart, googleSignInStart } from "../../../slicer/user/user.actions";
+import { emailSignInStart, googleSignInStart, signUpUserStart } from "../../../slicer/user/user.actions";
 
 import { i18n } from "../../../translations/i18n";
 
@@ -28,13 +28,11 @@ const LoginM = () => {
     password: "",
   };
   const handleSubmit = (values: FORM) => {
-
     dispatch(emailSignInStart(values))
-    Keyboard.dismiss();
   };
   return (
     <View>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         onPress={handleGoogleSigniIn}
         style={{
           backgroundColor: "red",
@@ -51,7 +49,7 @@ const LoginM = () => {
         >
           {i18n.t("modules.login.google")}
         </Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <Formik
         initialValues={{ ...INITIAL_STATE }}
         onSubmit={(values) => handleSubmit(values)}
