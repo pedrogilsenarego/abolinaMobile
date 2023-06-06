@@ -11,6 +11,8 @@ export const content = {
           google: "Enter with Google",
           email: "E-mail",
           password: "Password",
+          name: "Name",
+          recoverPassword: "Recover Password",
         },
         book: {
           description: "Description",
@@ -26,10 +28,12 @@ export const content = {
           loginUser: "You are login",
           addedCart: "Book added to cart",
           successBuy: "Items bought with success",
+          recoverPassword: "An e-mail was sent to recover the password",
         },
         fail: {
           newUser: "You were not registered this time",
           loginUser: "Something went wrong",
+          recoverPassword: "There was a problem recovering the password",
           emailInUse:
             "This email is already in use, please recover the password",
           emailNotVerified:

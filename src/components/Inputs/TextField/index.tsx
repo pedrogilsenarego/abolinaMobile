@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useField } from "formik";
-import { View, Text, TextInput, Button, Dimensions } from "react-native";
+import { View, Text, TextInput, Button, Dimensions, TouchableOpacity } from "react-native";
 import { Colors } from "../../../constants/pallete";
+import { Ionicons } from "@expo/vector-icons";
 
 interface Props {
   label: string;
@@ -21,7 +22,7 @@ const TextField = ({ label, name, password }: Props) => {
   return (
     <View>
       <View>
-        <Text style={{ fontSize: 18 }}>{label}</Text>
+        <Text style={{ fontSize: 18, color: "white" }}>{label}</Text>
         <TextInput
           secureTextEntry={password && !showPassword}
           value={meta.value}
@@ -33,18 +34,29 @@ const TextField = ({ label, name, password }: Props) => {
             borderColor: Colors.darkGrey,
             backgroundColor: "white",
             borderRadius: 12,
+            marginTop: 5,
             paddingHorizontal: 20,
             paddingVertical: 10,
             fontSize: 18,
-            width: width * 0.8
+            width: width * 0.8,
+
           }}
 
         />
         {password && (
-          <Button
-            title={showPassword ? 'Hide' : 'Show'}
-            onPress={handleClickShowPassword}
-          />
+          <TouchableOpacity style={{
+            position: "absolute",
+            right: 10,
+            top: "67%",
+            transform: [{ translateY: -12 }],
+            zIndex: 1,
+          }} onPress={handleClickShowPassword}>
+            <Ionicons
+              name={showPassword ? "eye-off-outline" : "eye-outline"}
+              size={23}
+              color={Colors.darkGrey}
+            />
+          </TouchableOpacity>
         )}
 
         {meta.touched && meta.error && (

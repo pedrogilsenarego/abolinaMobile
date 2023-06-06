@@ -10,20 +10,21 @@ interface Props {
 
 const Button = ({ label, onClick, inverseColors }: Props) => {
   return (
-    <View style={{ alignSelf: "flex-start" }}>
+    <View style={{}}>
       <TouchableOpacity
         onPress={() => onClick && onClick()}
         style={{
-          borderColor: Colors.tealc,
+          borderColor: inverseColors ? Colors.tealcTransparent : Colors.tealc,
           borderWidth: 2,
-          justifyContent: "center",
+          backgroundColor: inverseColors ? "white" : "transparent",
+          alignSelf: "flex-start",
           alignItems: "center",
           paddingHorizontal: 20,
           paddingVertical: 5,
           borderRadius: 6,
         }}
       >
-        <Text style={{ color: inverseColors ? "white" : Colors.tealc, fontSize: 16 }}>{label}</Text>
+        <Text style={{ color: Colors.tealc, fontSize: 16 }}>{label}</Text>
       </TouchableOpacity>
     </View>
   );

@@ -31,7 +31,7 @@ const Register = () => {
     Keyboard.dismiss();
   };
   return (
-    <View>
+    <View style={{ display: "flex", flexDirection: "row" }}>
 
       <Formik
         initialValues={{ ...INITIAL_STATE }}
@@ -39,11 +39,11 @@ const Register = () => {
         validationSchema={FORM_VALIDATION}
       >
         {(props) => (
-          <View style={{ flex: 1, rowGap: 20 }}>
+          <View style={{ flex: 1, rowGap: 20, alignItems: "center" }}>
             <TextField name="name" label={i18n.t("modules.login.name")} />
             <TextField name="email" label={i18n.t("modules.login.email")} />
             <TextField name="password" label={i18n.t("modules.login.password")} password />
-            <Button label='Register' formik />
+            <Button inverseColors label='Register' formik />
 
           </View>
         )}

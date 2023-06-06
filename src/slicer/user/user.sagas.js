@@ -7,7 +7,7 @@ import {
   auth,
   getCurrentUser,
 } from "../../config/firebaseConfig";
-import { handleUserProfile } from "./user.helpers";
+import { handleUserProfile, handleRecoverPassword } from "./user.helpers";
 
 import {
   updateFailNotification,
@@ -150,8 +150,32 @@ export function* onEmailSignInStart() {
   yield takeLatest(userTypes.EMAIL_SIGN_IN_START, emailSignIn);
 }
 
+export function* recoverPassword(action) {
+  try {
+    const { payload } = action;
+    yield handleRecoverPassword(payload);
+    yield put(
+      updateSuccessNotification(i18n.t("notifications.success.recoverPassword"))
+    );
+  } catch (err) {
+    console.log(err);
+    if (err) yield put(updateFailNotification(`${err.message}`));
+    else
+      yield put(
+        updateFailNotification(
+          `${i18n.t("notifications.fail.recoverPassword")}`
+        )
+      );
+  }
+}
+
+export function* onRecoverPassword() {
+  yield takeLatest(userTypes.RECOVER_PASSWORD, recoverPassword);
+}
+
 export default function* userSagas() {
   yield all([
+    call(onRecoverPassword),
     call(onGoogleSignInStart),
     call(onFacebookSignInStart),
     call(onSignOutUserStart),
