@@ -9,6 +9,7 @@ import { auth } from "../config/firebaseConfig";
 import { checkUserSession } from "../slicer/user/user.actions";
 import { disableLoading } from "../slicer/general/general.actions";
 
+
 const Stack = createStackNavigator();
 const AuthStack = createStackNavigator()
 
@@ -40,6 +41,8 @@ const ScreensMain = () => {
   )
 
 }
+
+
 
 const Screens = () => {
   const dispatch = useDispatch()
