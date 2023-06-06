@@ -19,7 +19,7 @@ const Login = () => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: "white",
+        backgroundColor: Colors.tealc,
 
         alignItems: "center",
         rowGap: 20,

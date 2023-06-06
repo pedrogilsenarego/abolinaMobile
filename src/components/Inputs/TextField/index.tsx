@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useField } from "formik";
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Text, TextInput, Button, Dimensions } from "react-native";
 import { Colors } from "../../../constants/pallete";
 
 interface Props {
@@ -12,6 +12,7 @@ interface Props {
 const TextField = ({ label, name, password }: Props) => {
   const [field, meta, helper] = useField(name ?? "");
   const [showPassword, setShowPassword] = useState<boolean>(false)
+  const { width } = Dimensions.get("window");
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -26,14 +27,16 @@ const TextField = ({ label, name, password }: Props) => {
           value={meta.value}
           onChangeText={(e) => helper.setValue(e)}
           underlineColorAndroid='transparent'
-          selectionColor='transparent'
+          selectionColor={Colors.darkGrey}
           style={{
             borderWidth: 2,
             borderColor: Colors.darkGrey,
+            backgroundColor: "white",
             borderRadius: 12,
             paddingHorizontal: 20,
-            paddingVertical: 4,
-            fontSize: 18
+            paddingVertical: 10,
+            fontSize: 18,
+            width: width * 0.8
           }}
 
         />
