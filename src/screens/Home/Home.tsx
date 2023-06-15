@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
-
 import { View, FlatList, SafeAreaView } from "react-native";
-import { Colors } from "../../constants/pallete";
-
 import Product from "./components/Product";
-import { firestore } from "../../config/firebaseConfig";
 import Button from "../../components/Button";
 import Menu from "../../components/Menu";
 import { signOut } from "../../services/user";
@@ -13,27 +9,24 @@ import { State } from "../../slicer/types";
 import { CurrentUser } from "../../slicer/user/user.types";
 import React from "react";
 import { Book } from "../../slicer/books/books.types";
-import firebase from "firebase/compat/app"; import { fetchBooksOwned } from "../../services/books";
-;
-
+import { fetchBooksOwned } from "../../services/books";
+import { useQuery } from 'react-query';
 
 const Home = () => {
-  const [books, setBooks] = useState<Book[]>();
   const currentUser = useSelector<State, CurrentUser>((state) => state?.user?.currentUser);
   const listBooksOwned = currentUser?.booksOwned || [];
 
+  const { data: books, isLoading: loadingBooks, error: errorBooks, refetch } = useQuery<Book[]>('booksOwned', () =>
+    fetchBooksOwned(listBooksOwned),
+    {
+      staleTime: 60 * 60 * 24 * 1000,
+      cacheTime: 60 * 60 * 24 * 1000,
+    }
+  );
+
   useEffect(() => {
-    fetchBooksOwned(listBooksOwned)
-      .then((list) => {
-        setBooks(list)
-      })
-      .catch((error) => {
-        // Handle any errors that occurred during fetching
-        console.error("Error fetching books:", error);
-      });
+    refetch(); // Trigger a refetch when the listBooksOwned value changes
   }, [listBooksOwned]);
-
-
 
   return (
     <SafeAreaView
@@ -51,7 +44,7 @@ const Home = () => {
             numColumns={3}
             style={{ paddingTop: 30 }}
             keyExtractor={(item, index) => index.toString()}
-            data={books}
+            data={books || []}
             renderItem={({ item }) => <Product product={item} />}
           ></FlatList>
         </View>

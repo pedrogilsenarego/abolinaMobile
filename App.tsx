@@ -4,7 +4,7 @@ import { useFonts } from "expo-font";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./src/slicer/createStore";
-
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import Screens from "./src/screens";
 import Snackbar from "./src/components/SnackBar";
@@ -29,7 +29,7 @@ export default function App() {
     InterLight: require("./assets/fonts/Inter-Light.ttf"),
   });
 
-
+  const queryClient = new QueryClient();
 
 
 
@@ -39,10 +39,12 @@ export default function App() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <NavigationContainer theme={theme}>
-          <Snackbar />
-          <Screens />
-        </NavigationContainer>
+        <QueryClientProvider client={queryClient}>
+          <NavigationContainer theme={theme}>
+            <Snackbar />
+            <Screens />
+          </NavigationContainer>
+        </QueryClientProvider>
       </PersistGate>
     </Provider>
   );

@@ -6,7 +6,7 @@ export const fetchBooksOwned = (listBooks: string[]): Promise<Book[]> => {
   const bookRefs = listBooks.map((bookId) =>
     firestore.collection("books").doc(bookId)
   );
-
+  console.log("Fetching owned books")
   return new Promise((resolve, reject) => {
     firestore
       .collection("books")
