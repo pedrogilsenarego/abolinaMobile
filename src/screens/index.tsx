@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import Home from "../../src/screens/Home/Home";
-import BookC from "../../src/screens/BookC";
+import { HomeScreen, BookScreen } from "./Screens";
+
 import { ROUTE_PATHS } from "../../src/constants/routes";
 import Login from "../../src/screens/Login";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -13,14 +13,9 @@ import { disableLoading } from "../slicer/general/general.actions";
 const Stack = createStackNavigator();
 const AuthStack = createStackNavigator()
 
-const BookScreen = ({ route }: any) => {
-  const { book } = route.params;
-  return (
 
-    <BookC book={book} />
 
-  );
-};
+
 
 const AuthScreens = () => {
   return (
@@ -35,7 +30,7 @@ const ScreensMain = () => {
       screenOptions={{ headerShown: false }}
       initialRouteName={ROUTE_PATHS.HOME}
     >
-      <Stack.Screen name={ROUTE_PATHS.HOME} component={Home} />
+      <Stack.Screen name={ROUTE_PATHS.HOME} component={HomeScreen} />
       <Stack.Screen name={ROUTE_PATHS.BOOK} component={BookScreen} />
     </Stack.Navigator>
   )

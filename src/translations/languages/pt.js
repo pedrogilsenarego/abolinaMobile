@@ -6,6 +6,9 @@ export const content = {
         required: "Tem de ser Preenchido",
       },
       modules: {
+        home: {
+          noBooks: "Ainda não tem livros para ler",
+        },
         login: {
           title: "Àbolina App",
           google: "Entrar com Google",
