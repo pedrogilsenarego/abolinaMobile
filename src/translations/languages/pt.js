@@ -6,6 +6,9 @@ export const content = {
         required: "Tem de ser Preenchido",
       },
       modules: {
+        mainMenu: {
+          cuppons: "Converter Cupões",
+        },
         home: {
           noBooks: "Ainda não tem livros para ler",
         },

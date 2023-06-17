@@ -6,6 +6,9 @@ export const content = {
         required: "Required",
       },
       modules: {
+        mainMenu: {
+          cuppons: "Convert Coupouns",
+        },
         home: {
           noBooks: "You have no books yet to read",
         },

@@ -2,6 +2,8 @@ import React from "react"
 import MainLayout from "../layouts/MainLayout"
 import Home from "./Home/Home"
 import BookC from "../../src/screens/BookC";
+import MainMenu from "./MainMenu";
+import ConvertCoupons from "./ConvertCoupons";
 
 
 export const HomeScreen = () => {
@@ -9,6 +11,19 @@ export const HomeScreen = () => {
     <MainLayout>
       <Home />
     </MainLayout>
+  )
+}
+
+export const MainMenuScreen = () => {
+  return (
+    <MainMenu />
+
+  )
+}
+
+export const ConvertCouponsScreen = () => {
+  return (
+    <ConvertCoupons />
   )
 }
 

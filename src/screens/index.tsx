@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { HomeScreen, BookScreen } from "./Screens";
+import { HomeScreen, BookScreen, MainMenuScreen, ConvertCouponsScreen } from "./Screens";
 
 import { ROUTE_PATHS } from "../../src/constants/routes";
 import Login from "../../src/screens/Login";
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../config/firebaseConfig";
 import { checkUserSession } from "../slicer/user/user.actions";
 import { disableLoading } from "../slicer/general/general.actions";
+import MainMenu from "./MainMenu";
 
 
 const Stack = createStackNavigator();
@@ -32,6 +33,8 @@ const ScreensMain = () => {
     >
       <Stack.Screen name={ROUTE_PATHS.HOME} component={HomeScreen} />
       <Stack.Screen name={ROUTE_PATHS.BOOK} component={BookScreen} />
+      <Stack.Screen name={ROUTE_PATHS.MAIN_MENU} component={MainMenuScreen} />
+      <Stack.Screen name={ROUTE_PATHS.CONVERT_COUPONS} component={ConvertCouponsScreen} />
     </Stack.Navigator>
   )
 
