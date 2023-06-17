@@ -56,32 +56,38 @@ export const convertCoupons = (
         couponRef
           .delete()
           .then(() => {
-            // Remove the coupon ID from the user's "coupons" field
-            const userRef = firestore.collection("users").doc(originalUser);
-            userRef
-              .get()
-              .then((userDoc) => {
-                if (userDoc.exists) {
-                  const userCoupons = userDoc.data()?.coupons || [];
-
-                  // Find the coupon with matching bookId and remove the couponId
-                  const updatedCoupons = userCoupons.map(
-                    (couponData: { bookId: string; couponId: string[] }) => {
-                      if (couponData.bookId === idBook) {
-                        const updatedCouponId = couponData.couponId.filter(
-                          (couponId: string) => couponId !== coupon
-                        );
-                        couponData.couponId = updatedCouponId;
+              // Remove the coupon ID from the user's "coupons" field
+              const userRef = firestore.collection("users").doc(originalUser);
+              userRef
+                .get()
+                .then((userDoc) => {
+                  if (userDoc.exists) {
+                    let userCoupons = userDoc.data()?.coupons || [];
+  
+                    // Find the coupon with matching bookId and remove the couponId
+                    userCoupons = userCoupons.map(
+                      (couponData: { bookId: string; couponId: string[] }) => {
+                        if (couponData.bookId === idBook) {
+                          const updatedCouponId = couponData.couponId.filter(
+                            (couponId: string) => couponId !== coupon
+                          );
+                          couponData.couponId = updatedCouponId;
+                        }
+                        return couponData;
                       }
-                      return couponData;
-                    }
-                  );
-
-                  userRef
-                    .update({
-                      coupons: updatedCoupons,
-                    })
-                    .then(() => {
+                    );
+  
+                    // Remove the coupon data if there are no more coupons remaining
+                    userCoupons = userCoupons.filter(
+                      (couponData: { couponId: string[] }) =>
+                        couponData.couponId.length > 0
+                    );
+  
+                    userRef
+                      .update({
+                        coupons: userCoupons,
+                      })
+                      .then(() => {
                       // Add the idBook to the user's "booksOwned" field
                       const currentUserRef = firestore
                         .collection("users")
