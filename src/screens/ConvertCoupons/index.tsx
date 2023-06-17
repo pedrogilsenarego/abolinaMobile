@@ -1,5 +1,5 @@
-import React from "react";
-import { View, SafeAreaView, Dimensions, Keyboard } from "react-native";
+import React, { useState } from "react";
+import { View, SafeAreaView, Keyboard, Text } from "react-native";
 import { i18n } from "../../translations/i18n";
 
 import { Formik } from "formik";
@@ -7,20 +7,30 @@ import { FORM_VALIDATION } from "./validation";
 import TextField from "../../components/Inputs/TextField";
 import Button from "../../components/Button";
 import { Colors } from "../../constants/pallete";
+import { convertCoupons } from "../../services/books";
+import { useSelector } from "react-redux";
+import { State } from "../../slicer/types";
+import { CurrentUser } from "../../slicer/user/user.types";
 
 interface FORM {
   couppon: string
 }
 
 const ConvertCoupons = () => {
-  const { width } = Dimensions.get("window");
+  const currentUser = useSelector<State, CurrentUser>((state) => state.user.currentUser)
+  const [resultConvert, setResultConvert] = useState<string>("")
   const INITIAL_STATE: FORM = {
     couppon: ""
   };
 
-  const handleSubmit = (values: FORM) => {
-
-    Keyboard.dismiss();
+  const handleSubmit = async (values: FORM) => {
+    try {
+      const result = await convertCoupons(values.couppon, currentUser.id, currentUser.booksOwned);
+      setResultConvert(result);
+      Keyboard.dismiss();
+    } catch (error: any) {
+      setResultConvert(error as string);
+    }
   };
 
   return (
@@ -41,6 +51,9 @@ const ConvertCoupons = () => {
           <View style={{ flex: 1, rowGap: 20, alignItems: "center" }}>
             <TextField name="couppon" />
             <Button inverseColors label={i18n.t("modules.mainMenu.cuppons")} formik />
+            <Text>
+              {resultConvert}
+            </Text>
           </View>
         )}
       </Formik>

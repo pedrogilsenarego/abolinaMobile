@@ -21,8 +21,6 @@ const Home = () => {
   const { data: books, isLoading: loadingBooks, error: errorBooks } = useQuery<Book[]>('booksOwned', () =>
     fetchBooksOwned(listBooksOwned),
     {
-      staleTime: 60 * 60 * 24 * 1000,
-      cacheTime: 60 * 60 * 24 * 1000,
       enabled: listBooksOwned.length > 0,
     }
   );
