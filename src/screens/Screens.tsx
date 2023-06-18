@@ -1,10 +1,12 @@
-import React from "react"
+
 import MainLayout from "../layouts/MainLayout"
 import Home from "./Home/Home"
 import BookC from "../../src/screens/BookC";
 import MainMenu from "./MainMenu";
 import ConvertCoupons from "./ConvertCoupons";
 import BookReader from "./BookReader";
+import * as React from "react";
+
 
 
 export const HomeScreen = () => {

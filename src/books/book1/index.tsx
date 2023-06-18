@@ -1,9 +1,12 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { View, Text } from "react-native";
 import LottieView from "lottie-react-native";
+import * as React from "react";
+
 
 const Book1 = () => {
-  const animation = useRef(null);
+  const animation = useRef<LottieView>(null);
+
   return (
     <View style={{ paddingHorizontal: 10 }}>
       <Text>
@@ -17,22 +20,25 @@ const Book1 = () => {
         with desktop publishing software like Aldus PageMaker including versions
         of Lorem Ipsum.
       </Text>
-      <View style={{
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-      }}>
+      <View
+        style={{
+          backgroundColor: "#fff",
+          alignItems: "center",
+          justifyContent: "center",
+          flex: 1,
+        }}
+      >
         <LottieView
-          source={require("../../assets/lottie/balloon-pup.json")}
+          source={require("./balloon-pup.json")}
           autoPlay
           ref={animation}
           style={{
             width: 200,
             height: 200,
-            backgroundColor: '#eee',
+            backgroundColor: "#eee",
           }}
         />
+
       </View>
     </View>
   );

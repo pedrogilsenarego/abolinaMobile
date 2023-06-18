@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Button,
   Text,
@@ -17,6 +16,7 @@ import { i18n } from "../../translations/i18n";
 import Menu from "../../components/Menu";
 import { Ionicons } from "@expo/vector-icons";
 import { ROUTE_PATHS } from "../../constants/routes";
+import * as React from "react";
 
 interface Props {
   book?: Book;

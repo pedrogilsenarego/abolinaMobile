@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   HomeScreen,
   BookScreen,
@@ -14,7 +14,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../config/firebaseConfig";
 import { checkUserSession } from "../slicer/user/user.actions";
 import { disableLoading } from "../slicer/general/general.actions";
-import MainMenu from "./MainMenu";
+import * as React from "react";
+
+
 
 const Stack = createStackNavigator();
 const AuthStack = createStackNavigator();

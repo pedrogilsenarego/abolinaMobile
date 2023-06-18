@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { View, SafeAreaView, Keyboard, Text } from "react-native";
 import { i18n } from "../../translations/i18n";
 
@@ -11,6 +11,7 @@ import { convertCoupons } from "../../services/books";
 import { useSelector } from "react-redux";
 import { State } from "../../slicer/types";
 import { CurrentUser } from "../../slicer/user/user.types";
+import * as React from "react";
 
 interface FORM {
   couppon: string
