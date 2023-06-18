@@ -16,6 +16,7 @@ import { Book } from "../../slicer/books/books.types";
 import { i18n } from "../../translations/i18n";
 import Menu from "../../components/Menu";
 import { Ionicons } from "@expo/vector-icons";
+import { ROUTE_PATHS } from "../../constants/routes";
 
 interface Props {
   book?: Book;
@@ -36,7 +37,6 @@ const BookC = ({ book }: Props) => {
     >
       <View>
         <Menu>
-
           <TouchableOpacity
             onPress={() => navigation.goBack()}
             style={styles.backButton}
@@ -50,12 +50,16 @@ const BookC = ({ book }: Props) => {
           showsVerticalScrollIndicator={false}
         >
           <View style={styles.container}>
-            <View style={styles.imageContainer}>
+            <TouchableOpacity
+              //@ts-ignore
+              onPress={() => navigation.navigate(ROUTE_PATHS.BOOK_READER)}
+              style={styles.imageContainer}
+            >
               <Image
                 style={styles.image}
                 source={{ uri: book.coverPage.toString() }}
               />
-            </View>
+            </TouchableOpacity>
             <View style={styles.detailsContainer}>
               <Text numberOfLines={1} ellipsizeMode='tail' style={styles.title}>
                 {book?.title}
@@ -89,8 +93,8 @@ const BookC = ({ book }: Props) => {
           </Text>
           <Button title='Go back' onPress={() => navigation.goBack()} />
         </ScrollView>
-      </View >
-    </SafeAreaView >
+      </View>
+    </SafeAreaView>
   );
 };
 

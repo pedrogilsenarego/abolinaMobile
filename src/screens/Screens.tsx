@@ -4,6 +4,7 @@ import Home from "./Home/Home"
 import BookC from "../../src/screens/BookC";
 import MainMenu from "./MainMenu";
 import ConvertCoupons from "./ConvertCoupons";
+import BookReader from "./BookReader";
 
 
 export const HomeScreen = () => {
@@ -33,5 +34,11 @@ export const BookScreen = ({ route }: any) => {
 
     <BookC book={book} />
 
+  );
+};
+
+export const BookReaderScreen = () => {
+  return (
+    <BookReader />
   );
 };
