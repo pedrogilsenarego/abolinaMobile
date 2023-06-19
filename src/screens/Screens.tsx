@@ -6,21 +6,27 @@ import MainMenu from "./MainMenu";
 import ConvertCoupons from "./ConvertCoupons";
 import BookReader from "./BookReader";
 import * as React from "react";
+import Shop from "./Shop/Home";
 
 
 
 export const HomeScreen = () => {
   return (
-    <MainLayout>
-      <Home />
-    </MainLayout>
+
+    <Home />
+
+  )
+}
+
+export const ShopScreen = () => {
+  return (
+    <Shop />
   )
 }
 
 export const MainMenuScreen = () => {
   return (
     <MainMenu />
-
   )
 }
 

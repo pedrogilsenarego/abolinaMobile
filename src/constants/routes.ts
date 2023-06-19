@@ -4,5 +4,6 @@ export const ROUTE_PATHS = {
   LOGIN:"Login",
   MAIN_MENU:"MainMenu",
   CONVERT_COUPONS: "ConvertCoupons",
-  BOOK_READER:"BookReader"
+  BOOK_READER:"BookReader",
+  SHOP:"Shop"
 }

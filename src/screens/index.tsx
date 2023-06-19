@@ -5,6 +5,7 @@ import {
   MainMenuScreen,
   ConvertCouponsScreen,
   BookReaderScreen,
+  ShopScreen
 } from "./Screens";
 
 import { ROUTE_PATHS } from "../../src/constants/routes";
@@ -15,8 +16,11 @@ import { auth } from "../config/firebaseConfig";
 import { checkUserSession } from "../slicer/user/user.actions";
 import { disableLoading } from "../slicer/general/general.actions";
 import * as React from "react";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Colors } from "../constants/pallete";
 
 
+const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
 const AuthStack = createStackNavigator();
@@ -28,7 +32,7 @@ const AuthScreens = () => {
     </AuthStack.Navigator>
   );
 };
-const ScreensMain = () => {
+const HomeStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
@@ -45,6 +49,32 @@ const ScreensMain = () => {
         name={ROUTE_PATHS.CONVERT_COUPONS}
         component={ConvertCouponsScreen}
       />
+    </Stack.Navigator>
+  );
+};
+
+const SettingsStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName={ROUTE_PATHS.MAIN_MENU}
+    >
+      <Stack.Screen
+        name={ROUTE_PATHS.MAIN_MENU}
+        component={MainMenuScreen}
+      />
+      <Stack.Screen
+        name={ROUTE_PATHS.CONVERT_COUPONS}
+        component={ConvertCouponsScreen}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const ShopStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name={ROUTE_PATHS.SHOP} component={ShopScreen} />
     </Stack.Navigator>
   );
 };
@@ -73,7 +103,24 @@ const Screens = () => {
     []
   );
 
-  return isAuthenticated ? <ScreensMain /> : <AuthScreens />;
+  if (!isAuthenticated) {
+    return <AuthScreens />;
+  }
+
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: { backgroundColor: Colors.tealc },
+        tabBarActiveTintColor: 'white', // Set the active button color
+        tabBarInactiveTintColor: '#ffffff66', // Set the inactive button color
+
+      }}
+    >
+      <Tab.Screen name="Home" component={HomeStack} />
+      <Tab.Screen name="Shop" component={ShopStack} />
+      <Tab.Screen name="Settings" component={SettingsStack} />
+    </Tab.Navigator>
+  );
 };
 
 export default Screens;

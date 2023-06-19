@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
 import { View, FlatList, SafeAreaView, Text } from "react-native";
 import Product from "./components/Product";
-import Button from "../../components/Button";
-import Menu from "../../components/Menu";
-import { signOut } from "../../services/user";
 import { useSelector } from "react-redux";
 import { State } from "../../slicer/types";
 import { CurrentUser } from "../../slicer/user/user.types";
@@ -35,9 +32,7 @@ const Home = () => {
       }}
     >
       <View>
-        <Menu>
-          <Button inverseColors label='Logout' onClick={signOut} />
-        </Menu>
+
         <View style={{ marginHorizontal: 10 }}>
           {listBooksOwned.length === 0 ? (
             <Text style={{ textAlign: "center", fontSize: 24, color: Colors.tealc, marginTop: 150 }}>{i18n.t("modules.home.noBooks")}</Text>

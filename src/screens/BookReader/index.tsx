@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { SafeAreaView, View, Text } from "react-native";
-import { storage } from "../../config/firebaseConfig";
-import { WebView } from 'react-native-webview';
+
+import { SafeAreaView } from "react-native";
+
 import * as React from "react";
 import Book1 from "../../books/book1";
 

@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
 
 import { View, FlatList, SafeAreaView } from "react-native";
-import { Colors } from "../../constants/pallete";
+
 
 import Product from "./components/Product";
 import { firestore } from "../../config/firebaseConfig";
-import Button from "../../components/Button";
-import Menu from "../../components/Menu";
-import { signOut } from "../../services/user";
 
-const Home = () => {
-  const [books, setBooks] = useState();
+import * as React from "react"
+import { Book } from "../../slicer/books/books.types";
+
+const Shop = () => {
+  const [books, setBooks] = useState<Book[]>();
 
   useEffect(() => {
     firestore.collection("books").onSnapshot((query) => {
-      const list = [];
+      const list: any[] = [];
       query.forEach((doc) => {
         list.push({ ...doc.data(), id: doc.id });
       });
@@ -30,9 +30,6 @@ const Home = () => {
       }}
     >
       <View>
-        <Menu>
-          <Button inverseColors label='Logout' onClick={signOut} />
-        </Menu>
         <View style={{ marginHorizontal: 10 }}>
           <FlatList
             numColumns={3}
@@ -47,4 +44,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Shop;
