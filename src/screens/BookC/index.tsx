@@ -17,6 +17,7 @@ import Menu from "../../components/Menu";
 import { Ionicons } from "@expo/vector-icons";
 import { ROUTE_PATHS } from "../../constants/routes";
 import * as React from "react";
+import useNavBottom from "../../hooks/useNavBottom";
 
 interface Props {
   book?: Book;
@@ -25,7 +26,7 @@ interface Props {
 const BookC = ({ book }: Props) => {
   const navigation = useNavigation();
   const lang = useSelector<State, string>((state) => state.general.lang);
-
+  useNavBottom({ show: false })
   if (!book) return <></>;
 
   return (
@@ -51,8 +52,12 @@ const BookC = ({ book }: Props) => {
         >
           <View style={styles.container}>
             <TouchableOpacity
-              //@ts-ignore
-              onPress={() => navigation.navigate(ROUTE_PATHS.BOOK_READER)}
+
+              onPress={() => {
+
+                //@ts-ignore
+                navigation.navigate(ROUTE_PATHS.BOOK_READER)
+              }}
               style={styles.imageContainer}
             >
               <Image

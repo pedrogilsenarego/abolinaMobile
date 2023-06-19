@@ -10,11 +10,12 @@ import { fetchBooksOwned } from "../../services/books";
 import { useQuery } from 'react-query';
 import { i18n } from "../../translations/i18n";
 import { Colors } from "../../constants/pallete";
+import useNavBottom from "../../hooks/useNavBottom";
 
 const Home = () => {
   const currentUser = useSelector<State, CurrentUser>((state) => state?.user?.currentUser);
   const listBooksOwned = currentUser?.booksOwned || [];
-
+  useNavBottom({ show: true })
   const { data: books, isLoading: loadingBooks, error: errorBooks } = useQuery<Book[]>('booksOwned', () =>
     fetchBooksOwned(listBooksOwned),
     {

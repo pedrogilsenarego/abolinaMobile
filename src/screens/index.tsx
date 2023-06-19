@@ -19,6 +19,7 @@ import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Colors } from "../constants/pallete";
 import { Ionicons } from "@expo/vector-icons";
+import { stylesScreens } from "./styles";
 
 
 
@@ -45,9 +46,6 @@ const HomeStack = () => {
       <Stack.Screen
         name={ROUTE_PATHS.BOOK_READER}
         component={BookReaderScreen}
-        options={{
-          headerShown: false
-        }}
       />
     </Stack.Navigator>
   );
@@ -108,20 +106,13 @@ const Screens = () => {
   return (
     <Tab.Navigator
       screenOptions={{
+        headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: Colors.tealc,
-          left: 20,
-          right: 20,
 
-          borderRadius: 15,
-          position: "absolute",
-          bottom: 30,
-          height: 60,
-          ...style.shadow,
+          ...stylesScreens.shadow,
         },
-        tabBarActiveTintColor: "white", // Set the active button color
-        tabBarInactiveTintColor: "#ffffff66", // Set the inactive button color
+
       }}
     >
       <Tab.Screen
@@ -138,7 +129,7 @@ const Screens = () => {
                 borderRadius: 12,
                 width: 45,
                 height: 45,
-                ...style.shadow2,
+                ...stylesScreens.shadow2,
 
               }}
             >
@@ -167,7 +158,7 @@ const Screens = () => {
               borderRadius: 12,
               width: 45,
               height: 45,
-              ...style.shadow2,
+              ...stylesScreens.shadow2,
 
             }}
           >
@@ -184,8 +175,10 @@ const Screens = () => {
           </View>
         ),
       }} />
-      <Tab.Screen name='Settings' component={SettingsStack} options={({ route }) => ({
-
+      <Tab.Screen name='Settings' component={SettingsStack} options={{
+        // tabBarStyle: {
+        //   display: "none"
+        // },
         tabBarIcon: ({ focused }) => (
           <View
             style={{
@@ -196,7 +189,7 @@ const Screens = () => {
               borderRadius: 12,
               width: 45,
               height: 45,
-              ...style.shadow2,
+              ...stylesScreens.shadow2,
 
             }}
           >
@@ -212,32 +205,11 @@ const Screens = () => {
             </Text>
           </View>
         ),
-      })} />
+      }} />
     </Tab.Navigator>
   );
 };
 
-const style = StyleSheet.create({
-  shadow: {
-    shadowColor: "#000000af",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.45,
-    shadowRadius: 3.5,
-    elevation: 5,
-  },
-  shadow2: {
-    shadowColor: "#000000af",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.35,
-    shadowRadius: 3.5,
-    elevation: 4,
-  },
-});
+
 
 export default Screens;

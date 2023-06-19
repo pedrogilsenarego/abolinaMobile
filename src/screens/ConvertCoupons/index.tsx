@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, SafeAreaView, Keyboard, Text } from "react-native";
 import { i18n } from "../../translations/i18n";
 
@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { State } from "../../slicer/types";
 import { CurrentUser } from "../../slicer/user/user.types";
 import * as React from "react";
+import useNavBottom from "../../hooks/useNavBottom";
 
 interface FORM {
   couppon: string
@@ -23,6 +24,8 @@ const ConvertCoupons = () => {
   const INITIAL_STATE: FORM = {
     couppon: ""
   };
+
+  useNavBottom({ show: false })
 
   const handleSubmit = async (values: FORM) => {
     try {
@@ -58,6 +61,7 @@ const ConvertCoupons = () => {
           </View>
         )}
       </Formik>
+
     </SafeAreaView>
   );
 };

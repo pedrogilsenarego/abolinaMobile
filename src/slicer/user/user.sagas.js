@@ -128,9 +128,9 @@ export function* emailSignIn({ payload: { email, password } }) {
 
     if (user.emailVerified) {
       yield getSnapshotFromUserAuth(user);
-      yield put(
-        updateSuccessNotification(i18n.t("notifications.success.loginUser"))
-      );
+      // yield put(
+      //   updateSuccessNotification(i18n.t("notifications.success.loginUser"))
+      // );
     } else {
       yield put(
         updateFailNotification(i18n.t("notifications.fail.emailNotVerified"))
