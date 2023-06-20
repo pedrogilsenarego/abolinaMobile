@@ -109,7 +109,6 @@ const Screens = () => {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
-
           ...stylesScreens.shadow,
         },
 
@@ -124,22 +123,16 @@ const Screens = () => {
               style={{
                 alignItems: "center",
                 justifyContent: "center",
-                top: focused ? 1 : 14,
-                backgroundColor: Colors.tealc,
-                borderRadius: 12,
-                width: 45,
-                height: 45,
-                ...stylesScreens.shadow2,
-
+                top: 13,
               }}
             >
               <Ionicons
-                name='home-outline'
+                name={focused ? "home" : 'home-outline'}
                 size={27}
                 color={focused ? "white" : "#ffffff66"}
               />
               <Text
-                style={{ color: focused ? "white" : "#ffffff66", fontSize: 8 }}
+                style={{ color: focused ? "white" : "#ffffff66", fontSize: 8, marginTop: 1 }}
               >
                 HOME
               </Text>
@@ -153,22 +146,16 @@ const Screens = () => {
             style={{
               alignItems: "center",
               justifyContent: "center",
-              top: focused ? 1 : 14,
-              backgroundColor: Colors.tealc,
-              borderRadius: 12,
-              width: 45,
-              height: 45,
-              ...stylesScreens.shadow2,
-
+              top: 13,
             }}
           >
             <Ionicons
-              name='cart-outline'
+              name={focused ? "cart" : 'cart-outline'}
               size={27}
               color={focused ? "white" : "#ffffff66"}
             />
             <Text
-              style={{ color: focused ? "white" : "#ffffff66", fontSize: 8 }}
+              style={{ color: focused ? "white" : "#ffffff66", fontSize: 8, marginTop: 1 }}
             >
               SHOP
             </Text>
@@ -184,22 +171,17 @@ const Screens = () => {
             style={{
               alignItems: "center",
               justifyContent: "center",
-              top: focused ? 1 : 14,
-              backgroundColor: Colors.tealc,
-              borderRadius: 12,
-              width: 45,
-              height: 45,
-              ...stylesScreens.shadow2,
+              top: 13,
 
             }}
           >
             <Ionicons
-              name='settings-outline'
+              name={focused ? "settings" : 'settings-outline'}
               size={27}
               color={focused ? "white" : "#ffffff66"}
             />
             <Text
-              style={{ color: focused ? "white" : "#ffffff66", fontSize: 8 }}
+              style={{ color: focused ? "white" : "#ffffff66", fontSize: 8, marginTop: 1 }}
             >
               SETTINGS
             </Text>

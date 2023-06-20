@@ -9,8 +9,10 @@ export const stylesScreens = StyleSheet.create({
     right: 20,
     borderRadius: 15,
     position: "absolute",
-    bottom: 30,
-    height: 60,
+    bottom: 25,
+    height: 50,
+    justifyContent:"center",
+    alignItems:"center",
     shadowColor: "#000000af",
     shadowOffset: {
       width: 0,
@@ -20,15 +22,15 @@ export const stylesScreens = StyleSheet.create({
     shadowRadius: 3.5,
     elevation: 5,
   },
-  shadow2: {
+  // shadow2: {
     
-    shadowColor: "#000000af",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.35,
-    shadowRadius: 3.5,
-    elevation: 4,
-  },
+  //   shadowColor: "#000000af",
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 2,
+  //   },
+  //   shadowOpacity: 0.35,
+  //   shadowRadius: 2.5,
+  //   elevation: 2,
+  // },
 });

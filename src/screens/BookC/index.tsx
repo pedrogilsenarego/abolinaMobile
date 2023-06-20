@@ -26,7 +26,7 @@ interface Props {
 const BookC = ({ book }: Props) => {
   const navigation = useNavigation();
   const lang = useSelector<State, string>((state) => state.general.lang);
-  useNavBottom({ show: false })
+  useNavBottom({ show: true })
   if (!book) return <></>;
 
   return (
@@ -49,6 +49,7 @@ const BookC = ({ book }: Props) => {
         <ScrollView
           style={styles.mainContainer}
           showsVerticalScrollIndicator={false}
+
         >
           <View style={styles.container}>
             <TouchableOpacity
@@ -96,7 +97,7 @@ const BookC = ({ book }: Props) => {
           <Text style={{ marginTop: 10, textAlign: "justify" }}>
             {lang === "PT" ? book?.translatorResume : book?.translatorResumeEN}
           </Text>
-          <Button title='Go back' onPress={() => navigation.goBack()} />
+          <View style={{ height: 180 }}></View>
         </ScrollView>
       </View>
     </SafeAreaView>
