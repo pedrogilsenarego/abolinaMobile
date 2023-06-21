@@ -39,6 +39,19 @@ const MainMenu = () => {
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
+        style={{
+          backgroundColor: Colors.tealc,
+          padding: 10,
+          alignItems: "center",
+          borderRadius: 10,
+          width: width * 0.8,
+        }}
+      >
+        <Text style={{ color: "white" }}>
+          Perguntas Frequentes
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
         // @ts-ignore
         onPress={signOut}
         style={{

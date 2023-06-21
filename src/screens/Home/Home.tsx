@@ -23,8 +23,6 @@ const Home = () => {
     }
   );
 
-
-
   return (
     <SafeAreaView
       style={{
@@ -33,7 +31,6 @@ const Home = () => {
       }}
     >
       <View>
-
         <View style={{ marginHorizontal: 10 }}>
           {listBooksOwned.length === 0 ? (
             <Text style={{ textAlign: "center", fontSize: 24, color: Colors.tealc, marginTop: 150 }}>{i18n.t("modules.home.noBooks")}</Text>
