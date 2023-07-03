@@ -106,7 +106,7 @@ const Screens = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
         tabBarShowLabel: false,
         tabBarStyle: {
           ...stylesScreens.shadow,
@@ -162,7 +162,7 @@ const Screens = () => {
           </View>
         ),
       }} />
-      <Tab.Screen name='Settings' component={SettingsStack} options={{
+      <Tab.Screen name='More' component={SettingsStack} options={{
         // tabBarStyle: {
         //   display: "none"
         // },
