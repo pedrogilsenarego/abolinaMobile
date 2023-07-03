@@ -24,11 +24,26 @@ const MainMenu = () => {
     >
       <TouchableOpacity
         // @ts-ignore
-        onPress={() => navigate.navigate(ROUTE_PATHS.CONVERT_COUPONS)}
+        
         style={{
           backgroundColor: Colors.tealc,
           padding: 10,
           marginTop: 60,
+          alignItems: "center",
+          borderRadius: 10,
+          width: width * 0.8,
+        }}
+      >
+        <Text style={{ color: "white" }}>
+          {i18n.t("modules.mainMenu.settings")}
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        // @ts-ignore
+        onPress={() => navigate.navigate(ROUTE_PATHS.CONVERT_COUPONS)}
+        style={{
+          backgroundColor: Colors.tealc,
+          padding: 10,        
           alignItems: "center",
           borderRadius: 10,
           width: width * 0.8,

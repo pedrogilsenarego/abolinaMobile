@@ -8,6 +8,7 @@ export const content = {
       modules: {
         mainMenu: {
           cuppons: "Converter Cupões",
+          settings: "Definições"
         },
         home: {
           noBooks: "Ainda não tem livros para ler",

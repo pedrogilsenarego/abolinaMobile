@@ -176,14 +176,14 @@ const Screens = () => {
             }}
           >
             <Ionicons
-              name={focused ? "settings" : 'settings-outline'}
+              name={focused ? "menu" : 'menu-outline'}
               size={27}
               color={focused ? "white" : "#ffffff66"}
             />
             <Text
               style={{ color: focused ? "white" : "#ffffff66", fontSize: 8, marginTop: 1 }}
             >
-              SETTINGS
+              MORE
             </Text>
           </View>
         ),
