@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { View, FlatList, SafeAreaView, Text } from "react-native";
 import Product from "./components/Product";
 import { useSelector } from "react-redux";
@@ -61,6 +60,7 @@ const Home = () => {
           )}
         </View>
       </View>
+      
     </SafeAreaView>
   );
 };

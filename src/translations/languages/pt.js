@@ -12,6 +12,12 @@ export const content = {
         },
         home: {
           noBooks: "Ainda não tem livros para ler",
+          shelfs: {
+            addShelfButton:"Criar nova prateleira +",
+            shelfModal: {
+              title: "Criar uma nova prateleira"
+            }
+          }
         },
         login: {
           title: "Àbolina App",

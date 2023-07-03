@@ -5,7 +5,7 @@ import { Colors } from "../../../constants/pallete";
 import { Ionicons } from "@expo/vector-icons";
 
 interface Props {
-  label?: string;
+  label?: string | null;
   name: string;
   password?: boolean
   colorLabel?: string
