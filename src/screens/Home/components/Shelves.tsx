@@ -61,7 +61,7 @@ const Shelves = () => {
           validationSchema={FORM_VALIDATION}
         >
           {(props) => (
-            <View style={{ display: "flex", rowGap: 20, alignItems: "center" }}>
+            <View style={{ display: "flex", rowGap: 10, alignItems: "center" }}>
               <TextField
                 placeholder={i18n.t("modules.home.shelfs.shelfModal.title")}
                 name="addShelf"
@@ -85,10 +85,21 @@ const Shelves = () => {
         contentContainerStyle={{
           flexDirection: "row",
           alignItems: "flex-start",
-          paddingRight: 10, // Add right padding to accommodate the "Create a new shelf" button
+          columnGap:5,
+          // Add right padding to accommodate the "Create a new shelf" button
         }}
         showsHorizontalScrollIndicator={false}
       >
+        <TouchableOpacity
+          style={{
+            paddingVertical: 7,
+            paddingHorizontal: 10,
+            backgroundColor: Colors.darkGrey,
+            borderRadius: 10,
+          }}
+        >
+          <Text style={{ color: "white" }}>All ({currentUser.booksOwned.length})</Text>
+        </TouchableOpacity>
         {currentUser?.shelfs?.map((shelf, key) => (
           <TouchableOpacity
             key={key}
@@ -96,8 +107,8 @@ const Shelves = () => {
               paddingVertical: 7,
               paddingHorizontal: 10,
               backgroundColor: Colors.tealcTransparent,
-              borderRadius: 20,
-              marginRight: 5, // Add right margin to create spacing between the shelves
+              borderRadius: 10,
+             
             }}
           >
             <Text style={{ color: "white" }}>
@@ -111,7 +122,7 @@ const Shelves = () => {
             paddingVertical: 7,
             paddingHorizontal: 10,
             backgroundColor: Colors.tealc,
-            borderRadius: 20,
+            borderRadius: 10,
           }}
         >
           <Text style={{ color: "white" }}>Create a new shelf +</Text>
