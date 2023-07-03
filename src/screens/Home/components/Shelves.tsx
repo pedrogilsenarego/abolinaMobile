@@ -6,6 +6,7 @@ import { i18n } from "../../../translations/i18n";
 import TextField from "../../../components/Inputs/TextField";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import Button from "../../../components/Button";
 
 const Shelves = () => {
   const [openNewShelfModal, setOpenNewShelfModal] = useState<boolean>(false);
@@ -17,39 +18,31 @@ const Shelves = () => {
     const INITIAL_STATE: IForm = {
       addShelf: "",
     };
-
     const FORM_VALIDATION = Yup.object().shape({
       addShelf: Yup.string().required(`${i18n.t("forms.required")}`),
     });
 
     const handleSubmit = (values: IForm) => {
-      return;
+      setOpenNewShelfModal(false)
     };
-
     return (
-      <View style={{height:"40vh"}}>
+      <View>
         <Formik
           initialValues={{ ...INITIAL_STATE }}
           onSubmit={(values) => handleSubmit(values)}
           validationSchema={FORM_VALIDATION}
         >
           {(props) => (
-            <View >
-               
+            <View style={{ display: "flex", rowGap: 20, alignItems: "center" }}>
               <TextField
+                placeholder={i18n.t("modules.home.shelfs.shelfModal.title")}
                 name="addShelf"
-                label={i18n.t("modules.home.shelfs.shelfModal.title")}
                 colorLabel={Colors.tealc}
               />
-              <Text
-                style={{
-                  color: Colors.tealc,
-                  fontSize: 18,
-                  fontWeight: "bold",
-                }}
-              >
-                {i18n.t("modules.home.shelfs.shelfModal.title")}
-              </Text>
+              <Button
+                label={i18n.t("modules.home.shelfs.shelfModal.button")}
+                formik
+              />
             </View>
           )}
         </Formik>

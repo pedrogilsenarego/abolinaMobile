@@ -15,7 +15,8 @@ export const content = {
           shelfs: {
             addShelfButton:"Create a new shelf +",
             shelfModal: {
-              title: "Create a new shelf"
+              title: "Create a new shelf",
+              button: "Create Shelf"
             }
           }
         },

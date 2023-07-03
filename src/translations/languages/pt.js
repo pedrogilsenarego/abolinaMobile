@@ -15,7 +15,8 @@ export const content = {
           shelfs: {
             addShelfButton:"Criar nova prateleira +",
             shelfModal: {
-              title: "Criar uma nova prateleira"
+              title: "Criar uma nova prateleira",
+              button: "Criar Prateleira"
             }
           }
         },

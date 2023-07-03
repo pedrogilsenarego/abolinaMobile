@@ -9,9 +9,10 @@ interface Props {
   name: string;
   password?: boolean
   colorLabel?: string
+  placeholder?:string | null
 }
 
-const TextField = ({ label, name, password, colorLabel }: Props) => {
+const TextField = ({ label, name, password, colorLabel, placeholder }: Props) => {
   const [field, meta, helper] = useField(name ?? "");
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const { width } = Dimensions.get("window");
@@ -33,6 +34,7 @@ const TextField = ({ label, name, password, colorLabel }: Props) => {
           <TextInput
             secureTextEntry={password && !showPassword}
             value={meta.value}
+            placeholder={placeholder || ""}
             onChangeText={(e) => helper.setValue(e)}
             underlineColorAndroid='transparent'
             selectionColor={Colors.darkGrey}

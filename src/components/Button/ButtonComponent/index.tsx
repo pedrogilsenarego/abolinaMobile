@@ -16,7 +16,7 @@ const Button = ({ label, onClick, inverseColors }: Props) => {
         style={{
           borderColor: inverseColors ? Colors.tealcTransparent : Colors.tealc,
           borderWidth: 2,
-          backgroundColor: inverseColors ? "white" : "transparent",
+          backgroundColor: inverseColors ? "white" : Colors.tealc,
           alignSelf: "flex-start",
           alignItems: "center",
           paddingHorizontal: 20,
@@ -24,7 +24,7 @@ const Button = ({ label, onClick, inverseColors }: Props) => {
           borderRadius: 6,
         }}
       >
-        <Text style={{ color: Colors.tealc, fontSize: 16 }}>{label}</Text>
+        <Text style={{ color: inverseColors? Colors.tealc:"white", fontSize: 16 }}>{label}</Text>
       </TouchableOpacity>
     </View>
   );
