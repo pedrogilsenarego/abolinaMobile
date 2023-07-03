@@ -40,3 +40,8 @@ export const recoverPassword = (email:string) => ({
   type: userTypes.RECOVER_PASSWORD,
   payload: email,
 });
+
+export const addNewShelf = (title:string) => ({
+  type: userTypes.ADD_NEW_SHELF,
+  payload: title,
+});

@@ -50,11 +50,21 @@ const userReducer = (state = INITIAL_STATE, action:Action) => {
         users: action.payload,
       };
 
-    case userTypes.SET_PREFERENCES:
-      return {
-        ...state,
-        currentUser: action.payload,
-      };
+      case userTypes.ADD_NEW_SHELF:
+        const newShelf = {
+          title: action.payload,
+          books: [],
+        };
+      
+        return {
+          ...state,
+          currentUser: {
+            ...state.currentUser,
+            shelfs: state.currentUser.shelfs.concat(newShelf),
+          },
+        };
+      
+      
     
     
     default:

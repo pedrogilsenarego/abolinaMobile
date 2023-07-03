@@ -15,7 +15,9 @@ export const userTypes = {
   FETCH_USERS_START: "FETCH_USERS_START",
   SET_USERS: "SET_USERS",
   SET_PREFERENCES: "SET_PREFERENCES",
-  RECOVER_PASSWORD:"RECOVER_PASSWORD"
+  RECOVER_PASSWORD:"RECOVER_PASSWORD",
+  //Shelfs
+  ADD_NEW_SHELF:"ADD_NEW_SHELF"
   
 }
 
@@ -46,5 +48,9 @@ export interface CurrentUser {
   displayName:string
   invoiceSettings:InvoiceSettings
   booksOwned:string[]
+  shelfs:{
+    title:string;
+    books:string[]
+  }[]
   coupons:Coupons[]
 }
