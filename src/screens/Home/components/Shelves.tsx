@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Keyboard } from "react-native";
+import { View, Text, TouchableOpacity, Keyboard, ScrollView } from "react-native";
 import { Colors } from "../../../constants/pallete";
 import BottomPopup from "../../../components/BottomPopup";
 import { i18n } from "../../../translations/i18n";
@@ -80,31 +80,31 @@ const Shelves = () => {
   };
   return (
     <View style={{ marginHorizontal: 10, paddingTop: 30 }}>
-      <View
-        style={{
+     <ScrollView
+        horizontal
+        contentContainerStyle={{
           flexDirection: "row",
-          flexWrap: "wrap",
           alignItems: "flex-start",
-          columnGap:10
+          paddingRight: 10, // Add right padding to accommodate the "Create a new shelf" button
         }}
+        showsHorizontalScrollIndicator={false}
       >
-        {currentUser?.shelfs?.map((shelf,key)=>{
-            return (
-                <TouchableOpacity
-          key={key}
-          style={{
-            paddingVertical: 7,
-            paddingHorizontal: 10,
-            backgroundColor: Colors.tealcTransparent,
-            borderRadius: 20,
-          }}
-        >
-          <Text style={{ color: "white" }}>
-            {shelf.title}
-          </Text>
-        </TouchableOpacity>
-            )
-        })}
+        {currentUser?.shelfs?.map((shelf, key) => (
+          <TouchableOpacity
+            key={key}
+            style={{
+              paddingVertical: 7,
+              paddingHorizontal: 10,
+              backgroundColor: Colors.tealcTransparent,
+              borderRadius: 20,
+              marginRight: 5, // Add right margin to create spacing between the shelves
+            }}
+          >
+            <Text style={{ color: "white" }}>
+              {shelf.title} ({shelf.books.length})
+            </Text>
+          </TouchableOpacity>
+        ))}
         <TouchableOpacity
           onPress={() => setOpenNewShelfModal(true)}
           style={{
@@ -116,7 +116,7 @@ const Shelves = () => {
         >
           <Text style={{ color: "white" }}>Create a new shelf +</Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
       <BottomPopup openModal={openNewShelfModal} onClose={()=>setOpenNewShelfModal(false)}>
         {createNewShelfContent()}
       </BottomPopup>
