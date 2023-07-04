@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { ROUTE_PATHS } from "../../../constants/routes";
 import { Book } from "../../../slicer/books/books.types";
 
@@ -14,14 +14,16 @@ const Product = ({ product, style }: Props) => {
   return (
     <TouchableOpacity
       // @ts-ignore
-      onPress={() => navigation.navigate(ROUTE_PATHS.BOOK, { book: product })}
+      onPress={() => navigation.navigate(ROUTE_PATHS.BOOK_READER)}
       style={[styles.container, style]}
     >
       <Image
         style={styles.image}
         source={{ uri: product.coverPage.toString() }}
       />
-      <Text numberOfLines={1} ellipsizeMode="tail">{product.title}</Text>
+      <Text numberOfLines={1} ellipsizeMode="tail">
+        {product.title}
+      </Text>
     </TouchableOpacity>
   );
 };

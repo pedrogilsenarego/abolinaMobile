@@ -1,23 +1,23 @@
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import * as React from "react";
 import {
   Button,
-  Text,
-  View,
-  StyleSheet,
   Image,
-  ScrollView,
   SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
   TouchableOpacity,
+  View,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
-import { State } from "../../slicer/types";
-import { Book } from "../../slicer/books/books.types";
-import { i18n } from "../../translations/i18n";
 import Menu from "../../components/Menu";
-import { Ionicons } from "@expo/vector-icons";
 import { ROUTE_PATHS } from "../../constants/routes";
-import * as React from "react";
 import useNavBottom from "../../hooks/useNavBottom";
+import { Book } from "../../slicer/books/books.types";
+import { State } from "../../slicer/types";
+import { i18n } from "../../translations/i18n";
 
 interface Props {
   book?: Book;
@@ -26,7 +26,7 @@ interface Props {
 const BookC = ({ book }: Props) => {
   const navigation = useNavigation();
   const lang = useSelector<State, string>((state) => state.general.lang);
-  useNavBottom({ show: true })
+  useNavBottom({ show: true });
   if (!book) return <></>;
 
   return (
@@ -42,32 +42,23 @@ const BookC = ({ book }: Props) => {
             onPress={() => navigation.goBack()}
             style={styles.backButton}
           >
-            <Ionicons name='arrow-back-outline' size={17} color='white' />
+            <Ionicons name="arrow-back-outline" size={17} color="white" />
             <Text style={styles.titleMenu}>{book?.title}</Text>
           </TouchableOpacity>
         </Menu>
         <ScrollView
           style={styles.mainContainer}
           showsVerticalScrollIndicator={false}
-
         >
           <View style={styles.container}>
-            <TouchableOpacity
-
-              onPress={() => {
-
-                //@ts-ignore
-                navigation.navigate(ROUTE_PATHS.BOOK_READER)
-              }}
-              style={styles.imageContainer}
-            >
+            <TouchableOpacity style={styles.imageContainer}>
               <Image
                 style={styles.image}
                 source={{ uri: book.coverPage.toString() }}
               />
             </TouchableOpacity>
             <View style={styles.detailsContainer}>
-              <Text numberOfLines={1} ellipsizeMode='tail' style={styles.title}>
+              <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
                 {book?.title}
               </Text>
               <Text style={styles.text}>€{book?.price}</Text>

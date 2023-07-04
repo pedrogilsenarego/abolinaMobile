@@ -1,35 +1,41 @@
-import { useState, useEffect } from "react";
-import { View, SafeAreaView, Keyboard, Text } from "react-native";
+import { useEffect, useState } from "react";
+import { Keyboard, SafeAreaView, Text, View } from "react-native";
 import { i18n } from "../../translations/i18n";
 
 import { Formik } from "formik";
-import { FORM_VALIDATION } from "./validation";
-import TextField from "../../components/Inputs/TextField";
-import Button from "../../components/Button";
-import { Colors } from "../../constants/pallete";
-import { convertCoupons } from "../../services/books";
+import * as React from "react";
 import { useSelector } from "react-redux";
+import Button from "../../components/Button";
+import TextField from "../../components/Inputs/TextField";
+import { Colors } from "../../constants/pallete";
+import useNavBottom from "../../hooks/useNavBottom";
+import { convertCoupons } from "../../services/books";
 import { State } from "../../slicer/types";
 import { CurrentUser } from "../../slicer/user/user.types";
-import * as React from "react";
-import useNavBottom from "../../hooks/useNavBottom";
+import { FORM_VALIDATION } from "./validation";
 
 interface FORM {
-  couppon: string
+  couppon: string;
 }
 
 const ConvertCoupons = () => {
-  const currentUser = useSelector<State, CurrentUser>((state) => state.user.currentUser)
-  const [resultConvert, setResultConvert] = useState<string>("")
+  const currentUser = useSelector<State, CurrentUser>(
+    (state) => state.user.currentUser
+  );
+  const [resultConvert, setResultConvert] = useState<string>("");
   const INITIAL_STATE: FORM = {
-    couppon: ""
+    couppon: "",
   };
 
-  useNavBottom({ show: false })
+  useNavBottom({ show: false });
 
   const handleSubmit = async (values: FORM) => {
     try {
-      const result = await convertCoupons(values.couppon, currentUser.id, currentUser.booksOwned);
+      const result = await convertCoupons(
+        values.couppon,
+        currentUser.id,
+        currentUser.booksOwned
+      );
       setResultConvert(result);
       Keyboard.dismiss();
     } catch (error: any) {
@@ -43,7 +49,7 @@ const ConvertCoupons = () => {
         flex: 1,
         backgroundColor: "white",
         alignItems: "center",
-        paddingTop: 60
+        paddingTop: 60,
       }}
     >
       <Formik
@@ -54,14 +60,15 @@ const ConvertCoupons = () => {
         {(props) => (
           <View style={{ flex: 1, rowGap: 20, alignItems: "center" }}>
             <TextField name="couppon" />
-            <Button inverseColors label={i18n.t("modules.mainMenu.cuppons")} formik />
-            <Text>
-              {resultConvert}
-            </Text>
+            <Button
+              inverseColors
+              label={i18n.t("modules.mainMenu.cuppons")}
+              formik
+            />
+            <Text>{resultConvert}</Text>
           </View>
         )}
       </Formik>
-
     </SafeAreaView>
   );
 };

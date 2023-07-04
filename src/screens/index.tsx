@@ -1,27 +1,25 @@
+import { Ionicons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import * as React from "react";
 import { useEffect, useState } from "react";
-import {
-  HomeScreen,
-  BookScreen,
-  MainMenuScreen,
-  ConvertCouponsScreen,
-  BookReaderScreen,
-  ShopScreen,
-} from "./Screens";
-import { StyleSheet, View, Image, Text } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { useDispatch } from "react-redux";
 import { ROUTE_PATHS } from "../../src/constants/routes";
 import Login from "../../src/screens/Login";
-import { createStackNavigator } from "@react-navigation/stack";
-import { useDispatch } from "react-redux";
 import { auth } from "../config/firebaseConfig";
-import { checkUserSession } from "../slicer/user/user.actions";
-import { disableLoading } from "../slicer/general/general.actions";
-import * as React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Colors } from "../constants/pallete";
-import { Ionicons } from "@expo/vector-icons";
+import { disableLoading } from "../slicer/general/general.actions";
+import { checkUserSession } from "../slicer/user/user.actions";
+import {
+  BookReaderScreen,
+  BookScreen,
+  ConvertCouponsScreen,
+  HomeScreen,
+  MainMenuScreen,
+  ShopScreen,
+} from "./Screens";
 import { stylesScreens } from "./styles";
-
-
 
 const Tab = createBottomTabNavigator();
 
@@ -42,7 +40,7 @@ const HomeStack = () => {
       initialRouteName={ROUTE_PATHS.HOME}
     >
       <Stack.Screen name={ROUTE_PATHS.HOME} component={HomeScreen} />
-      <Stack.Screen name={ROUTE_PATHS.BOOK} component={BookScreen} />
+
       <Stack.Screen
         name={ROUTE_PATHS.BOOK_READER}
         component={BookReaderScreen}
@@ -61,7 +59,6 @@ const SettingsStack = () => {
       <Stack.Screen
         name={ROUTE_PATHS.CONVERT_COUPONS}
         component={ConvertCouponsScreen}
-
       />
     </Stack.Navigator>
   );
@@ -71,6 +68,7 @@ const ShopStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={ROUTE_PATHS.SHOP} component={ShopScreen} />
+      <Stack.Screen name={ROUTE_PATHS.BOOK} component={BookScreen} />
     </Stack.Navigator>
   );
 };
@@ -111,11 +109,10 @@ const Screens = () => {
         tabBarStyle: {
           ...stylesScreens.shadow,
         },
-
       }}
     >
       <Tab.Screen
-        name='Home'
+        name="Home"
         component={HomeStack}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -127,12 +124,16 @@ const Screens = () => {
               }}
             >
               <Ionicons
-                name={focused ? "home" : 'home-outline'}
+                name={focused ? "home" : "home-outline"}
                 size={27}
                 color={focused ? "white" : "#ffffff66"}
               />
               <Text
-                style={{ color: focused ? "white" : "#ffffff66", fontSize: 8, marginTop: 1 }}
+                style={{
+                  color: focused ? "white" : "#ffffff66",
+                  fontSize: 8,
+                  marginTop: 1,
+                }}
               >
                 HOME
               </Text>
@@ -140,58 +141,71 @@ const Screens = () => {
           ),
         }}
       />
-      <Tab.Screen name='Shop' component={ShopStack} options={{
-        tabBarIcon: ({ focused }) => (
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              top: 13,
-            }}
-          >
-            <Ionicons
-              name={focused ? "cart" : 'cart-outline'}
-              size={27}
-              color={focused ? "white" : "#ffffff66"}
-            />
-            <Text
-              style={{ color: focused ? "white" : "#ffffff66", fontSize: 8, marginTop: 1 }}
+      <Tab.Screen
+        name="Shop"
+        component={ShopStack}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                top: 13,
+              }}
             >
-              SHOP
-            </Text>
-          </View>
-        ),
-      }} />
-      <Tab.Screen name='More' component={SettingsStack} options={{
-        // tabBarStyle: {
-        //   display: "none"
-        // },
-        tabBarIcon: ({ focused }) => (
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              top: 13,
-
-            }}
-          >
-            <Ionicons
-              name={focused ? "menu" : 'menu-outline'}
-              size={27}
-              color={focused ? "white" : "#ffffff66"}
-            />
-            <Text
-              style={{ color: focused ? "white" : "#ffffff66", fontSize: 8, marginTop: 1 }}
+              <Ionicons
+                name={focused ? "cart" : "cart-outline"}
+                size={27}
+                color={focused ? "white" : "#ffffff66"}
+              />
+              <Text
+                style={{
+                  color: focused ? "white" : "#ffffff66",
+                  fontSize: 8,
+                  marginTop: 1,
+                }}
+              >
+                SHOP
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="More"
+        component={SettingsStack}
+        options={{
+          // tabBarStyle: {
+          //   display: "none"
+          // },
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                top: 13,
+              }}
             >
-              MORE
-            </Text>
-          </View>
-        ),
-      }} />
+              <Ionicons
+                name={focused ? "menu" : "menu-outline"}
+                size={27}
+                color={focused ? "white" : "#ffffff66"}
+              />
+              <Text
+                style={{
+                  color: focused ? "white" : "#ffffff66",
+                  fontSize: 8,
+                  marginTop: 1,
+                }}
+              >
+                MORE
+              </Text>
+            </View>
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
-
-
 
 export default Screens;
