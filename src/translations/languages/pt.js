@@ -5,20 +5,25 @@ export const content = {
         email: "Deve de ser um Email Válido",
         required: "Tem de ser Preenchido",
       },
+      bottomMenu: {
+        home: "ÍNICIO",
+        shop: "LOJA",
+        more: "MAIS",
+      },
       modules: {
         mainMenu: {
           cuppons: "Converter Cupões",
-          settings: "Definições"
+          settings: "Definições",
         },
         home: {
           noBooks: "Ainda não tem livros para ler",
           shelfs: {
-            addShelfButton:"Criar nova prateleira +",
+            addShelfButton: "Criar nova prateleira +",
             shelfModal: {
               title: "Criar uma nova prateleira",
-              button: "Criar Prateleira"
-            }
-          }
+              button: "Criar Prateleira",
+            },
+          },
         },
         login: {
           title: "Àbolina App",

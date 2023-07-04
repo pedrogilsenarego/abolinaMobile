@@ -11,6 +11,7 @@ import { auth } from "../config/firebaseConfig";
 import { Colors } from "../constants/pallete";
 import { disableLoading } from "../slicer/general/general.actions";
 import { checkUserSession } from "../slicer/user/user.actions";
+import { i18n } from "../translations/i18n";
 import {
   BookReaderScreen,
   BookScreen,
@@ -105,6 +106,18 @@ const Screens = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: true,
+        headerStyle: {
+          backgroundColor: "white",
+          shadowColor: "#000000af",
+          shadowOffset: {
+            width: 0,
+            height: 1,
+          },
+          shadowOpacity: 0.45,
+          shadowRadius: 3.5,
+          elevation: 5,
+        },
+        headerTintColor: Colors.tealc, // Change the color of the text here
         tabBarShowLabel: false,
         tabBarStyle: {
           ...stylesScreens.shadow,
@@ -112,7 +125,7 @@ const Screens = () => {
       }}
     >
       <Tab.Screen
-        name="Home"
+        name={i18n.t("bottomMenu.home")}
         component={HomeStack}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -135,14 +148,14 @@ const Screens = () => {
                   marginTop: 1,
                 }}
               >
-                HOME
+                {i18n.t("bottomMenu.home")}
               </Text>
             </View>
           ),
         }}
       />
       <Tab.Screen
-        name="Shop"
+        name={i18n.t("bottomMenu.shop")}
         component={ShopStack}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -165,14 +178,14 @@ const Screens = () => {
                   marginTop: 1,
                 }}
               >
-                SHOP
+                {i18n.t("bottomMenu.shop")}
               </Text>
             </View>
           ),
         }}
       />
       <Tab.Screen
-        name="More"
+        name={i18n.t("bottomMenu.more")}
         component={SettingsStack}
         options={{
           // tabBarStyle: {
@@ -198,7 +211,7 @@ const Screens = () => {
                   marginTop: 1,
                 }}
               >
-                MORE
+                {i18n.t("bottomMenu.more")}
               </Text>
             </View>
           ),

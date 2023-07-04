@@ -5,20 +5,25 @@ export const content = {
         email: "Must be a valid E-mail",
         required: "Required",
       },
+      bottomMenu: {
+        home: "HOME",
+        shop: "SHOP",
+        more: "MORE",
+      },
       modules: {
         mainMenu: {
           cuppons: "Convert Coupouns",
-          settings: "Settings"
+          settings: "Settings",
         },
         home: {
           noBooks: "You have no books yet to read",
           shelfs: {
-            addShelfButton:"Create a new shelf +",
+            addShelfButton: "Create a new shelf +",
             shelfModal: {
               title: "Create a new shelf",
-              button: "Create Shelf"
-            }
-          }
+              button: "Create Shelf",
+            },
+          },
         },
         login: {
           title: "Àbolina App",
