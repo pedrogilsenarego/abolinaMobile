@@ -1,25 +1,32 @@
-import { useRef } from "react";
-import { View, Text } from "react-native";
 import LottieView from "lottie-react-native";
 import * as React from "react";
-
+import { useRef } from "react";
+import { Text, View } from "react-native";
+import { useQuery } from "react-query";
+import { fetchDigitalBook } from "../../services/digitalBooks";
+import { IDigitalBook } from "../../types/digitalBook";
 
 const Book1 = () => {
   const animation = useRef<LottieView>(null);
+  const documentID = "duasAlmas";
+
+  const {
+    isLoading: loadingBook,
+    error: errorBook,
+    data: bookData,
+  } = useQuery<IDigitalBook, [string, string]>(
+    [documentID, documentID],
+    fetchDigitalBook,
+    {
+      staleTime: 3600 * 60,
+      cacheTime: 3600 * 60,
+    }
+  );
 
   return (
     <View style={{ paddingHorizontal: 10 }}>
-      <Text>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
-      </Text>
+      <Text style={{ marginTop: 50, fontSize: 24 }}>{bookData?.title}</Text>
+      <View style={{ width: 100, height: 100, backgroundColor: "red" }}></View>
       <View
         style={{
           backgroundColor: "#fff",
@@ -38,7 +45,6 @@ const Book1 = () => {
             backgroundColor: "#eee",
           }}
         />
-
       </View>
     </View>
   );
